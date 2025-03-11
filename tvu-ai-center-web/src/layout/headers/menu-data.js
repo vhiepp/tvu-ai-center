@@ -2,23 +2,23 @@ const menu_data = [
   {
     id: 1,
     mega_menu: false,
-    has_dropdown: true,
+    has_dropdown: false,
     title: "Home",
     link: "/",
     active: "active",
-    sub_menus: [
-      { link: "/", title: "Data analytics" },
-      { link: "/home-2", title: "Payment Gateway" },
-      { link: "/home-3", title: "CRM Software" },
-      { link: "/home-4", title: "Security Software" },
-      { link: "/home-5", title: "Saas" },
-    ],
+    // sub_menus: [
+      // { link: "/", title: "Data analytics" },
+      // { link: "/home-2", title: "Payment Gateway" },
+      // { link: "/home-3", title: "CRM Software" },
+      // { link: "/home-4", title: "Security Software" },
+      // { link: "/home-5", title: "Saas" },
+    // ],
   },
   {
     id: 2,
     mega_menu: false,
     has_dropdown: true,
-    title: "Pages",
+    title: "Products",
     link: "/about",
     active: "",
     sub_menus: [
@@ -41,7 +41,7 @@ const menu_data = [
     id: 3,
     mega_menu: false,
     has_dropdown: true,
-    title: "Projects",
+    title: "Services",
     link: "/project",
     active: "",
     sub_menus: [
@@ -54,7 +54,7 @@ const menu_data = [
     id: 4,
     mega_menu: false,
     has_dropdown: true,
-    title: "Blog",
+    title: "News",
     link: "/blog",
     active: "",
     sub_menus: [

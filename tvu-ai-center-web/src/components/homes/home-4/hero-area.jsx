@@ -6,11 +6,11 @@ import useCharAnimation from '@/hooks/useCharAnimation';
 
 import hero_shape from "../../../../public/assets/img/hero/hero-shape-4-1.png";
 import hero_img  from "../../../../public/assets/img/hero/hero-4-3.png";
-import hero_4_img_1  from "../../../../public/assets/img/hero/hero-4-1.png";
+import hero_4_img_1  from "../../../../public/assets/images/shape31.png";
 import hero_4_img_2  from "../../../../public/assets/img/hero/hero-4-2.png";
 
 const hero_content = {
-    sub_title: "Wellcome to Softec",
+    sub_title: "Wellcome to TVU AI Center",
     title: <>
     <span><span className='child'>A1-Driven</span></span>{" "}
     <span><span className='child'>Cyber Security</span></span>{" "}
