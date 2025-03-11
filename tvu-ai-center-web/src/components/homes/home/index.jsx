@@ -22,15 +22,15 @@ const HomeOne = () => {
           <main className="fix">
             <HeroArea />
             
-            <FeatureArea />
-            <AboutArea />
-            <ServicesArea />
-            <ProjectArea />
-            <TestimonialArea />
-            <RankArea />
-            <PriceArea />
+            {/* <FeatureArea /> */}
+            {/* <AboutArea /> */}
+            {/* <ServicesArea /> */}
+            {/* <ProjectArea /> */}
+            {/* <TestimonialArea /> */}
+            {/* <RankArea /> */}
+            {/* <PriceArea /> */}
           </main>
-          <Footer />
+          {/* <Footer /> */}
           <ScrollToTop />
         </div>
       </div>
