@@ -1,5 +1,15 @@
 {
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "products": "Products",
+    "services": "Services",
+    "news": "News"
+  },
+  "footer": {},
   "home": {
+    "welcome": "Welcome",
     "title": "TVU AI Center",
     "description": "This is a multilingual website."
   },

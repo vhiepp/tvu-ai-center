@@ -1,6 +1,16 @@
 {
+  "header": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "products": "Sản phẩm",
+    "services": "Dịch vụ",
+    "news": "Tin tức"
+  },
+  "footer": {},
   "home": {
-    "title": "Chào mừng đến với trang web của tôi",
+    "welcome": "Chào mừng",
+    "title": "Trung tâm Trí tuệ nhân tạo",
     "description": "Đây là một trang web đa ngôn ngữ."
   },
   "post": {
