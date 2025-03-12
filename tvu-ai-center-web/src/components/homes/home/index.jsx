@@ -13,7 +13,7 @@ import ServicesArea from "./services-area";
 import TestimonialArea from "./testimonial-area";
 import Footer from "@/layout/footers/footer";
 
-const HomeOne = () => {
+const HomeOne = () => {  
   return (
     <>
       <HeaderTwo />

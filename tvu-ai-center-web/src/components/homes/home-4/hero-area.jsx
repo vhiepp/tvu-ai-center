@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useCharAnimation from '@/hooks/useCharAnimation';
 
+import { useTranslation } from "../../../utils/i18n";
+
 
 import hero_shape from "../../../../public/assets/img/hero/hero-shape-4-1.png";
 import hero_img  from "../../../../public/assets/img/hero/hero-4-3.png";
@@ -22,6 +24,9 @@ const { sub_title, title}  = hero_content
 
 
 const HeroArea = () => {
+
+   const { t } = useTranslation();
+
    useCharAnimation('.tp-hero-title-4 span.child');
 
     return (
@@ -39,7 +44,7 @@ const HeroArea = () => {
                         <div className="tp-hero-4-section-box pt-10 z-index-3">
                            <h5 className="tp-section-subtitle-4 tp-char-animation wow tpfadeRight" data-wow-duration="1s" data-wow-delay=".6s">{sub_title}</h5>
 
-                           <h3 className="tp-hero-title-4 pb-35 tp-char-animation">{title}</h3>
+                           <h3 className="tp-hero-title-4 pb-35 tp-char-animation">{t('home.title')}</h3>
 
                            <Link className="tp-btn-yellow-border wow tpfadeRight" 
                                  data-wow-duration=".9s" 
