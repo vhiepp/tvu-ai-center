@@ -41,7 +41,7 @@ const HeaderTwo = () => {
                         alt="theme-pure"
                         style={{ height: "46px", width: "46px" }}
                       />
-                      <span>AI Center</span>
+                      <span>Logo</span>
                     </div>
                   </Link>
 
@@ -52,7 +52,7 @@ const HeaderTwo = () => {
                         alt="theme-pure"
                         style={{ height: "46px", width: "46px" }}
                       />
-                      <span>AI Center</span>
+                      <span>Logo</span>
                     </div>
                   </Link>
                 </div>
