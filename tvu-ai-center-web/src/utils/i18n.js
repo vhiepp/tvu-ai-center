@@ -21,15 +21,15 @@ export function useTranslation() {
 
 export const languages = [
   {
-    code: "en",
-    name: "English",
-    icon_img: vn_img
-  },
-  {
     code: "vi",
     name: "Tiếng Việt",
     icon_img: en_img
   },
+  {
+    code: "en",
+    name: "English",
+    icon_img: vn_img
+  }
 ];
 
 export function getCurrentLocale() {

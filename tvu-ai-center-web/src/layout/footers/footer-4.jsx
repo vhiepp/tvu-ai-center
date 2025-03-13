@@ -25,11 +25,15 @@ const footer_content = {
   location: "https://maps.app.goo.gl/8zQFiz3UzJT6sKcF9",
 
   footer_lisks: [
-    { name: "Damo page", link: "#" },
-    { name: "FAQ", link: "/faq" },
-    { name: "About", link: "/about" },
-    { name: "Pricing Plan", link: "/price" },
-    { name: "Integrations", link: "/integrations" },
+    { name: "Test page", link: "#" },
+    { name: "Test page", link: "#" },
+    { name: "Test page", link: "#" },
+    { name: "Test page", link: "#" },
+    { name: "Test page", link: "#" },
+    //  { name: "FAQ", link: "/faq" },
+    //  { name: "About", link: "/about" },
+    //  { name: "Pricing Plan", link: "/price" },
+    //  { name: "Integrations", link: "/integrations" },
   ],
 };
 const { sub_title, policy_text, phone, email, location, footer_lisks } =
@@ -73,8 +77,8 @@ const FooterFour = () => {
               <div className="row">
                 <div
                   className="col-xl-4 col-lg-4 col-md-6 pb-45 wow tpfadeUp"
-                  data-wow-duration=".9s"
-                  data-wow-delay=".3s"
+                  data-wow-duration=".2s"
+                  data-wow-delay=".1s"
                 >
                   <div className="tp-footer__widget footer-widget-4 footer-col-4-1">
                     <div className="tp-footer__logo mb-25">
@@ -82,12 +86,14 @@ const FooterFour = () => {
                         <Image src={footer_logo} alt="theme-pure" />
                       </Link>
                     </div>
-                    <h3 className="footer-subtitle-3">{sub_title}</h3>
+                    <h3 className="footer-subtitle-3">
+                      {t("subscribe_newsletter")}
+                    </h3>
                     <div className="tp-footer__input mb-15 p-relative">
                       <form onSubmit={(e) => e.preventDefault()}>
                         <input
                           type="text"
-                          placeholder="Business email adress"
+                          placeholder={t("your_email")}
                           required
                         />
                         <span>
@@ -98,7 +104,7 @@ const FooterFour = () => {
                         </button>
                       </form>
                     </div>
-                    <p>{policy_text}</p>
+                    {/* <p>{policy_text}</p> */}
                     <div className="tp-team-social">
                       <SocialLinksTwo />
                     </div>
@@ -106,8 +112,8 @@ const FooterFour = () => {
                 </div>
                 <div
                   className="col-xl-5 col-lg-5 col-md-6 pb-45 wow tpfadeUp"
-                  data-wow-duration=".9s"
-                  data-wow-delay=".5s"
+                  data-wow-duration=".2s"
+                  data-wow-delay=".2s"
                 >
                   <div className="tp-footer__widget footer-widget-4 footer-col-4-2">
                     <h4 className="tp-footer__widget-title">
@@ -126,8 +132,8 @@ const FooterFour = () => {
                 </div>
                 <div
                   className="col-xl-3 col-lg-3 col-md-6 pb-45 wow tpfadeUp"
-                  data-wow-duration=".9s"
-                  data-wow-delay=".7s"
+                  data-wow-duration=".2s"
+                  data-wow-delay=".4s"
                 >
                   <div className="tp-footer__widget footer-widget-4 footer-col-4-3">
                     <h4 className="tp-footer__widget-title">
@@ -158,8 +164,8 @@ const FooterFour = () => {
           </div>
           <div
             className="tp-copyright__area pt-20 pb-20 wow tpfadeUp"
-            data-wow-duration=".9s"
-            data-wow-delay=".9s"
+            data-wow-duration=".2s"
+            data-wow-delay=".3s"
           >
             <div className="container">
               <div className="row justify-content-center">

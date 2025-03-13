@@ -47,11 +47,7 @@ const HeroArea = () => {
           <div className="row">
             <div className="col-xl-7 col-lg-7">
               <div className="tp-hero-4-section-box pt-10 z-index-3">
-                <h5
-                  className="tp-section-subtitle-4 tp-char-animation wow tpfadeRight"
-                  data-wow-duration="1s"
-                  data-wow-delay=".6s"
-                >
+                <h5 className="tp-section-subtitle-4 tp-char-animation">
                   {t("home.welcome")}
                 </h5>
 
@@ -68,12 +64,7 @@ const HeroArea = () => {
                   <span className="child">{t("home.title")}</span>
                 </h3>
 
-                <Link
-                  className="tp-btn-yellow-border wow tpfadeRight"
-                  data-wow-duration=".9s"
-                  data-wow-delay=".7s"
-                  href="/contact"
-                >
+                <Link className="tp-btn-yellow-border" href="/contact">
                   <span>
                     {t("header.contact")}
                     <i className="far fa-angle-right"></i>

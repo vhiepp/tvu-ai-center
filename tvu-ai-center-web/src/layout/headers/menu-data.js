@@ -3,8 +3,8 @@ const menu_data = [
     id: 1,
     mega_menu: false,
     has_dropdown: false,
-    title: "home",
-    link: "/",
+    title: "about",
+    link: "/about",
     active: "active",
     // sub_menus: [
       // { link: "/", title: "Data analytics" },

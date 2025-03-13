@@ -39,7 +39,7 @@ const HeaderTwo = () => {
                       <Image
                         src={white_logo}
                         alt="theme-pure"
-                        style={{ height: "48px", width: "48px" }}
+                        style={{ height: "46px", width: "46px" }}
                       />
                       <span>AI Center</span>
                     </div>
@@ -50,7 +50,7 @@ const HeaderTwo = () => {
                       <Image
                         src={black_logo}
                         alt="theme-pure"
-                        style={{ height: "48px", width: "48px" }}
+                        style={{ height: "46px", width: "46px" }}
                       />
                       <span>AI Center</span>
                     </div>
@@ -68,6 +68,7 @@ const HeaderTwo = () => {
                 <div className="tp-header-2__right d-flex align-items-center justify-content-end">
                   <Link
                     className="tp-btn-green-sm d-none d-md-block"
+                    style={{ background: "#f8ff35", color: "#000" }}
                     href="/sign-in"
                   >
                     {t("login")}
