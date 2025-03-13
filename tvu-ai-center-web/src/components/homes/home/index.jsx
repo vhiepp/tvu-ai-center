@@ -16,8 +16,7 @@ import Footer from "@/layout/footers/footer";
 const HomeOne = () => {  
   return (
     <>
-      <HeaderTwo />
-      <div id="smooth-wrapper">
+      <div id="smooth-wrapper" style={{minHeight: "100vh"}}>
         <div id="smooth-content">
           <main className="fix">
             <HeroArea />

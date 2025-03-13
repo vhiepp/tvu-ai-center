@@ -1,3 +1,4 @@
+import MainLayout from "@/layout/main";
 import "../styles/index.scss"; 
 
 
@@ -7,5 +8,10 @@ if (typeof window !== "undefined") {
 
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  const Layout = Component.Layout || MainLayout;
+  
+  return (
+  <MainLayout>
+    <Component {...pageProps} />
+  </MainLayout>);
 }

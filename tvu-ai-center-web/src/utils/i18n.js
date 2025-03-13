@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import en from "../locales/en.json";
 import vi from "../locales/vi.json";
+import vn_img from "@/images/icon/vn.png";
+import en_img from "@/images/icon/en.png";
 
 const translations = { en, vi };
 
@@ -16,3 +18,16 @@ export function useTranslation() {
   
     return { t, locale: currentLocale };
 }
+
+export const languages = [
+  {
+    code: "en",
+    name: "English",
+    icon_img: vn_img
+  },
+  {
+    code: "vi",
+    name: "Tiếng Việt",
+    icon_img: en_img
+  },
+];
