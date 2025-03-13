@@ -31,3 +31,21 @@ export const languages = [
     icon_img: en_img
   },
 ];
+
+export function getCurrentLocale() {
+  if (typeof window !== "undefined") {
+    const pathLocale = window.location.pathname.split("/")[1];
+    return pathLocale === "en" ? "en" : "vi"; // Mặc định là "vi"
+  }
+
+  return "vi"; // Trả về mặc định nếu chạy trên server
+}
+
+export function getCurrentLocaleName() {
+  if (typeof window !== "undefined") {
+    const pathLocale = window.location.pathname.split("/")[1];
+    return pathLocale === "en" ? "English" : "Tiếng Việt"; // Mặc định là "Tiếng Việt"
+  }
+  
+  return "Tiếng Việt"; // Trả về mặc định nếu chạy trên server
+}

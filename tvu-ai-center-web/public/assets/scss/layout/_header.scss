@@ -148,6 +148,9 @@
         z-index: 999;
         & .black-logo{
             display: block;
+            & .logo {
+                display: flex;
+            }
         }
         & .white-logo{
             display: none;
@@ -205,8 +208,33 @@
 
     }
 }
-.black-logo{
+.tp-header-2__logo .logo {
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tp-header-2__logo .logo span {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.black-logo {
     display: none;
+}
+
+.white-logo span {
+    color: var(--tp-common-white);
+    display: block;
+}
+
+.white-logo .logo {
+    display: flex;
+}
+
+.black-logo span {
+    color: var(--tp-common-black);
+    display: block;
 }
 
 

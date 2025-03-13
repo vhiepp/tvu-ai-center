@@ -5,16 +5,23 @@
     "contact": "Contact",
     "products": "Products",
     "services": "Services",
-    "news": "News"
+    "news": "News",
+    "research": "Research"
   },
   "footer": {},
   "home": {
     "welcome": "Welcome",
     "title": "TVU AI Center",
+    "center": "",
     "description": "This is a multilingual website."
   },
   "post": {
     "read_more": "Read more",
     "comments": "Comments"
-  }
+  },
+  "login": "Login",
+  "logout": "Logout",
+  "register": "Register",
+  "address": "No. 126 Nguyen Thien Thanh Street, Quarter 4, Ward 5, Tra Vinh City, Tra Vinh Province",
+  "contact_info": "Contact Info"
 }

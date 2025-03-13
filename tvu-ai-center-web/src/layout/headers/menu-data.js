@@ -3,7 +3,7 @@ const menu_data = [
     id: 1,
     mega_menu: false,
     has_dropdown: false,
-    title: "Home",
+    title: "home",
     link: "/",
     active: "active",
     // sub_menus: [
@@ -18,7 +18,7 @@ const menu_data = [
     id: 2,
     mega_menu: false,
     has_dropdown: true,
-    title: "Products",
+    title: "products",
     link: "/about",
     active: "",
     sub_menus: [
@@ -41,8 +41,21 @@ const menu_data = [
     id: 3,
     mega_menu: false,
     has_dropdown: true,
-    title: "Services",
+    title: "services",
     link: "/project",
+    active: "",
+    sub_menus: [
+      { link: "/project", title: "Project" },
+      { link: "/project-details", title: "Project Details" }, 
+    ],
+  },
+
+  {
+    id: 6,
+    mega_menu: false,
+    has_dropdown: true,
+    title: "research",
+    link: "/research",
     active: "",
     sub_menus: [
       { link: "/project", title: "Project" },
@@ -54,7 +67,7 @@ const menu_data = [
     id: 4,
     mega_menu: false,
     has_dropdown: true,
-    title: "News",
+    title: "news",
     link: "/blog",
     active: "",
     sub_menus: [
@@ -69,7 +82,7 @@ const menu_data = [
     id: 5,
     mega_menu: false,
     has_dropdown: false,
-    title: "Contact",
+    title: "contact",
     link: "/contact",
     active: "",
   },
