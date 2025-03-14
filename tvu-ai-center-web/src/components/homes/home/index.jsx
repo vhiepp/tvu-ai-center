@@ -13,18 +13,18 @@ import ServicesArea from "./services-area";
 import TestimonialArea from "./testimonial-area";
 import Footer from "@/layout/footers/footer";
 
-const HomeOne = () => {  
+const HomeOne = () => {
   return (
     <>
-      <div id="smooth-wrapper" style={{minHeight: "100vh"}}>
+      <div id="smooth-wrapper" style={{ minHeight: "100vh" }}>
         <div id="smooth-content">
           <main className="fix">
             <HeroArea />
-            
+
             {/* <FeatureArea /> */}
-            {/* <AboutArea /> */}
+            <AboutArea />
             {/* <ServicesArea /> */}
-            {/* <ProjectArea /> */}
+            <ProjectArea />
             {/* <TestimonialArea /> */}
             {/* <RankArea /> */}
             {/* <PriceArea /> */}
