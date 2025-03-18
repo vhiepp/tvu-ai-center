@@ -52,9 +52,11 @@ const FooterFour = () => {
 
   const changeLanguage = (lang) => {
     if (lang === "vi") {
-      window.location.href = `/${router.asPath === "/" ? "" : router.asPath}`;
+      window.location.href = `${window.location.origin}/${
+        router.asPath === "/" ? "" : router.asPath
+      }`;
     } else {
-      window.location.href = `/${lang}${
+      window.location.href = `${window.location.origin}/${lang}${
         router.asPath === "/" ? "" : router.asPath
       }`;
     }

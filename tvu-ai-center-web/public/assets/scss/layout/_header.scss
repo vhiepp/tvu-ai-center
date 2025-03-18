@@ -62,6 +62,10 @@
     }
 }
 
+#header-sticky {
+    z-index: 100;
+}
+
 .header-bottom__area-2{
     &.header-sticky{
         position: fixed;

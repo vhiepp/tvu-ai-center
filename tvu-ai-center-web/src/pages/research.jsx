@@ -1,18 +1,18 @@
 import React from "react";
 import SEO from "../common/seo";
-import Contact from "../components/contact";
 import Wrapper from "../layout/wrapper";
+import Research from "@/components/research";
 import { useTranslation } from "@/utils/i18n";
 
-const index = () => {
+const indx = () => {
   const { t } = useTranslation();
 
   return (
     <Wrapper>
-      <SEO pageTitle={t("header.contact")} />
-      <Contact />
+      <SEO pageTitle={t("header.research")} />
+      <Research />
     </Wrapper>
   );
 };
 
-export default index;
+export default indx;

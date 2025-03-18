@@ -11,7 +11,6 @@ import OfficeLocation from "./office-location";
 const Contact = () => {
   return (
     <>
-      <HeaderSix />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <main>
@@ -20,9 +19,7 @@ const Contact = () => {
             <OfficeLocation />
             <ContactFormArea />
             <ContactInner />
-            <CtaArea />
           </main>
-          <FooterFive style_contact={true} style_team={true} />
         </div>
       </div>
     </>

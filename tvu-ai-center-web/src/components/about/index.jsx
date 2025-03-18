@@ -10,21 +10,25 @@ import Brand from "./brand";
 import CompanyArea from "./company-area";
 import JobArea from "./job-area";
 import JourneyArea from "./journey-area";
- 
+import { useTranslation } from "@/utils/i18n";
+
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <HeaderSix />
-      <Breadcrumb title_top="About"  title_bottom="Softec" />
-      <HeroBanner title="About" subtitle="Softec" bg_img="/assets/img/breadcrumb/breadcrumb-2.jpg" />
+      <Breadcrumb title_top={t("header.about")} title_bottom="AI Center" />
+      <HeroBanner
+        title={t("header.about")}
+        subtitle="AI Center"
+        bg_img="/assets/images/tvu/tvu_anime3.png"
+      />
       <Brand />
       <CompanyArea />
       <AboutArea />
       <TeamArea bg_style={true} />
       <JourneyArea />
       <JobArea />
-      <CtaArea />
-      <FooterFive style_contact={true} style_team={true} />
     </>
   );
 };
