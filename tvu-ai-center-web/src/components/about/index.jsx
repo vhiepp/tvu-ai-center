@@ -21,12 +21,12 @@ const About = () => {
       <HeroBanner
         title={t("header.about")}
         subtitle="AI Center"
-        bg_img="/assets/images/tvu/tvu_anime3.png"
+        bg_img="/assets/images/tvu/tvu_anime23.png"
       />
-      <Brand />
-      <CompanyArea />
       <AboutArea />
+      <Brand />
       <TeamArea bg_style={true} />
+      {/* <CompanyArea /> */}
       <JourneyArea />
       <JobArea />
     </>

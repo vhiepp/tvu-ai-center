@@ -2,11 +2,14 @@ import React from "react";
 import SEO from "../common/seo";
 import About from "../components/about";
 import Wrapper from "../layout/wrapper";
+import { useTranslation } from "@/utils/i18n";
 
 const index = () => {
+  const { t } = useTranslation();
+
   return (
     <Wrapper>
-      <SEO pageTitle={"Giới thiệu"} />
+      <SEO pageTitle={t("header.about")} />
       <About />
     </Wrapper>
   );
