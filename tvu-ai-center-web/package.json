@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
     "i18next": "^24.2.2",
