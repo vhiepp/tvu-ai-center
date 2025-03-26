@@ -1,14 +1,15 @@
 import React from "react";
 import SEO from "../common/seo";
-import BlogDetails from "../components/blog-details";
+import Blog from "../components/blog";
 import Wrapper from "../layout/wrapper";
+import { useTranslation } from "@/utils/i18n";
 
 const index = () => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
-      <SEO pageTitle={"Softec - Data analytics"} />
-      <BlogDetails />
-      {/* <p>đang cập nhật</p> */}
+      <SEO pageTitle={t("header.news")} />
+      <Blog />
     </Wrapper>
   );
 };

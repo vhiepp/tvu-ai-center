@@ -11,6 +11,8 @@ import CompanyArea from "./company-area";
 import JobArea from "./job-area";
 import JourneyArea from "./journey-area";
 import { useTranslation } from "@/utils/i18n";
+import ProjectArea from "../homes/home/project-area";
+import ContactFormArea from "../contact/contact-form-area";
 
 const About = () => {
   const { t } = useTranslation();
@@ -23,12 +25,15 @@ const About = () => {
         subtitle="AI Center"
         bg_img="/assets/images/tvu/tvu_anime23.png"
       />
-      <AboutArea />
       <Brand />
+      <AboutArea />
       <TeamArea bg_style={true} />
       {/* <CompanyArea /> */}
+      {/* <ProjectArea /> */}
       <JourneyArea />
-      <JobArea />
+      <div style={{ marginBottom: "4rem" }}></div>
+      <ContactFormArea />
+      {/* <JobArea /> */}
     </>
   );
 };

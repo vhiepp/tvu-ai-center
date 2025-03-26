@@ -9,7 +9,6 @@ import PostboxArea from "./postbox-area";
 const BlogDetails = () => {
   return (
     <>
-      <HeaderSix />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <main>
@@ -18,7 +17,6 @@ const BlogDetails = () => {
             <PostboxArea />
             <Portfolio />
           </main>
-          <FooterFive style_contact={true} style_team={true} bg_style={false} />
         </div>
       </div>
     </>

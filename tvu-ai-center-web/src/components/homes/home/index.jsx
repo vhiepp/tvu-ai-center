@@ -12,6 +12,9 @@ import RankArea from "./rank-area";
 import ServicesArea from "./services-area";
 import TestimonialArea from "./testimonial-area";
 import Footer from "@/layout/footers/footer";
+import BlogGrid from "@/components/blog/blog-grid";
+import Portfolio2 from "@/components/blog-details/portfolio-2";
+import Brand from "@/components/about/brand";
 
 const HomeOne = () => {
   return (
@@ -23,14 +26,17 @@ const HomeOne = () => {
 
             {/* <FeatureArea /> */}
             <AboutArea />
+            <Brand />
             {/* <ServicesArea /> */}
+            <Portfolio2 />
+            {/* <BlogGrid /> */}
             <ProjectArea />
             {/* <TestimonialArea /> */}
             {/* <RankArea /> */}
             {/* <PriceArea /> */}
           </main>
           {/* <Footer /> */}
-          <ScrollToTop />
+          {/* <ScrollToTop /> */}
         </div>
       </div>
     </>

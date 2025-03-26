@@ -42,5 +42,9 @@
   "ai_research_applications": "Research many AI applications serving life",
   "get_in_touch": "Get In Touch",
   "contact_response": "We will contact you again within 24 hours after receiving your request.",
-  "send_request": "Send request"
+  "send_request": "Send request",
+  "latest_news": "Latest news",
+  "latest_ai_news": "Latest AI news in the world",
+  "category": "Category",
+  "search": "Search"
 }

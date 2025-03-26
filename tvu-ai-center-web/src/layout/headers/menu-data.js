@@ -1,11 +1,19 @@
 const menu_data = [
   {
+    id: 7,
+    mega_menu: false,
+    has_dropdown: false,
+    title: "home",
+    link: "/",
+    active: "active",
+  },
+  {
     id: 1,
     mega_menu: false,
     has_dropdown: false,
     title: "about",
     link: "/about",
-    active: "active",
+    active: "",
     // sub_menus: [
     // { link: "/", title: "Data analytics" },
     // { link: "/home-2", title: "Payment Gateway" },
@@ -68,7 +76,7 @@ const menu_data = [
     mega_menu: false,
     has_dropdown: false,
     title: "news",
-    link: "/blog",
+    link: "/news",
     active: "",
     sub_menus: [
       // { link: "/blog", title: "Blog" },

@@ -9,18 +9,16 @@ import ThumbArea from "./thumb-area";
 const ProjectDetails = () => {
   return (
     <>
-      <HeaderSix />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <main>
-            <BreadcrumbEight />
-            <ThumbArea />
-            <ProjectDetailsArea />
-            <ProjectArea />
-          </main>
-          <FooterFive style_contact={true}  style_team={true} bg_style={false} />
-        </div>
-      </div>
+      {/* <div id="smooth-wrapper">
+        <div id="smooth-content"> */}
+      <main>
+        <BreadcrumbEight />
+        <ThumbArea />
+        <ProjectDetailsArea />
+        {/* <ProjectArea /> */}
+      </main>
+      {/* </div>
+      </div> */}
     </>
   );
 };
