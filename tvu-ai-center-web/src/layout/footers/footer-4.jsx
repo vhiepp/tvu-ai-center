@@ -84,10 +84,10 @@ const FooterFour = () => {
                 >
                   <div className="tp-footer__widget footer-widget-4 footer-col-4-1">
                     <div className="tp-footer__logo mb-25">
-                      <Link href="/">
-                        {/* <Image src={footer_logo} alt="theme-pure" /> */}
-                        <h4 style={{ color: "white" }}>Logo</h4>
-                      </Link>
+                      {/* <Link href="/"> */}
+                      {/* <Image src={footer_logo} alt="theme-pure" /> */}
+                      {/* <h4 style={{ color: "white" }}>Logo</h4> */}
+                      {/* </Link> */}
                     </div>
                     <h3 className="footer-subtitle-3">
                       {t("subscribe_newsletter")}

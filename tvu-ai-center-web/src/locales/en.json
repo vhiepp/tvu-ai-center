@@ -37,5 +37,10 @@
   "ai": "Artificial Intelligence",
   "apply_ai_to_the_system": "Apply AI to the system",
   "member": "Member",
-  "organization": "Organization"
+  "organization": "Organization",
+  "ai_applications_applied_to_life": "Create many AI applications applied to life",
+  "ai_research_applications": "Research many AI applications serving life",
+  "get_in_touch": "Get In Touch",
+  "contact_response": "We will contact you again within 24 hours after receiving your request.",
+  "send_request": "Send request"
 }

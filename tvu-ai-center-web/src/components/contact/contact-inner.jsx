@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-
 import icon_1 from "../../../public/assets/img/contact/contact-icon-sm-1.png";
 import icon_2 from "../../../public/assets/img/contact/contact-icon-sm-2.png";
 import icon_3 from "../../../public/assets/img/contact/contact-icon-sm-3.png";
-
+import { useTranslation } from "@/utils/i18n";
 
 const inner_content = {
   title: "Book a Demo!",
@@ -16,26 +15,27 @@ const inner_content = {
     {
       id: 1,
       icon: icon_1,
-      title: "contact@softuch.com",
-      link: "mailto:contact@softuch.com",
+      title: "aic@tvu.edu.vn",
+      link: "mailto:aic@tvu.edu.vn",
     },
     {
       id: 2,
       icon: icon_2,
-      title: "+1-202-555-0144",
-      link: "tel:+1-202-555-0144",
+      title: "0123456789",
+      link: "tel:0123456789",
     },
     {
       id: 3,
       icon: icon_3,
-      title: "35Park Avenue, Uk",
-      link: "https://www.google.com.bd/maps/@23.7806365,90.4193257,12z",
+      title: "TP. Trà Vinh, TV",
+      link: "https://maps.app.goo.gl/vPkQSzvgeGbN6LGQ9",
     },
   ],
 };
 const { title, description, contact_data } = inner_content;
 
 const ContactInner = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="contact-inner-area pb-130">
@@ -43,8 +43,10 @@ const ContactInner = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="contact-inner-title-sm-wrap text-center mb-50">
-                <h4 className="contact-inner-title-sm">{title}</h4>
-                <p>{description}</p>
+                <h4 className="contact-inner-title-sm">
+                  {t("header.contact")}
+                </h4>
+                <p>{t("contact_response")}</p>
               </div>
             </div>
           </div>
@@ -65,7 +67,7 @@ const ContactInner = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </>
   );
 };

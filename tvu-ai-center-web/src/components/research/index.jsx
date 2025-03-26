@@ -1,4 +1,4 @@
-import BreadcrumbSeven from "@/common/breadcrumbs/breadcrumb-7";
+import BreadcrumbSeven from "@/common/breadcrumbs/breadcrumb-7-research";
 import FooterFive from "@/layout/footers/footer-5";
 import HeaderSix from "@/layout/headers/header-6";
 import React from "react";

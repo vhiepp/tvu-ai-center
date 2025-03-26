@@ -1,8 +1,10 @@
 import React from "react";
 import NiceSelect from "../ui/nice-select";
+import { useTranslation } from "@/utils/i18n";
 
 const ContactUsForm = () => {
   const selectHandler = (e) => {};
+  const { t } = useTranslation();
   return (
     <>
       <form onSubmit={(e) => e.preventDefault()} className="box">
@@ -49,7 +51,7 @@ const ContactUsForm = () => {
           </div>
           <div className="col-xxl-12">
             <div className="postbox__btn-box">
-              <button className="submit-btn w-100">Send your Request</button>
+              <button className="submit-btn w-100">{t("send_request")}</button>
             </div>
           </div>
         </div>

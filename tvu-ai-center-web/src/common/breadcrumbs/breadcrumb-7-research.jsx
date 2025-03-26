@@ -31,7 +31,7 @@ const BreadcrumbSeven = () => {
                   ref={animeRef}
                   className="breadcrumb__title tp-char-animation text-white anime_text"
                 >
-                  {t("header.products")}
+                  {t("header.research")}
                 </h3>
                 <div
                   className="breadcrumb__text text-white wow tpfadeUp"
@@ -39,7 +39,7 @@ const BreadcrumbSeven = () => {
                   data-wow-delay=".6s"
                 >
                   <p style={{ color: "#d7d7d7" }}>
-                    {t("ai_applications_applied_to_life")}
+                    {t("ai_research_applications")}
                   </p>
                 </div>
               </div>

@@ -15,10 +15,10 @@ const Contact = () => {
         <div id="smooth-content">
           <main>
             <Breadcrumb title_top="Get In" title_bottom="Get In" />
-            <HeroBanner bg_img="/assets/img/contact/contact-banner.jpg" />
-            <OfficeLocation />
-            <ContactFormArea />
+            <HeroBanner bg_img="/assets/images/tvu/tvu_anime6.png" />
+            {/* <OfficeLocation /> */}
             <ContactInner />
+            <ContactFormArea />
           </main>
         </div>
       </div>

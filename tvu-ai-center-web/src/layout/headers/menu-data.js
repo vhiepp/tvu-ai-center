@@ -7,11 +7,11 @@ const menu_data = [
     link: "/about",
     active: "active",
     // sub_menus: [
-      // { link: "/", title: "Data analytics" },
-      // { link: "/home-2", title: "Payment Gateway" },
-      // { link: "/home-3", title: "CRM Software" },
-      // { link: "/home-4", title: "Security Software" },
-      // { link: "/home-5", title: "Saas" },
+    // { link: "/", title: "Data analytics" },
+    // { link: "/home-2", title: "Payment Gateway" },
+    // { link: "/home-3", title: "CRM Software" },
+    // { link: "/home-4", title: "Security Software" },
+    // { link: "/home-5", title: "Saas" },
     // ],
   },
   {
@@ -33,22 +33,22 @@ const menu_data = [
       // { link: "/price", title: "Price" },
       // { link: "/register", title: "Register" },
       // { link: "/sign-in", title: "Signin" },
-      // { link: "/404", title: "404" }, 
+      // { link: "/404", title: "404" },
     ],
   },
-  
-  {
-    id: 3,
-    mega_menu: false,
-    has_dropdown: true,
-    title: "services",
-    link: "/project",
-    active: "",
-    sub_menus: [
-      { link: "/project", title: "Project" },
-      { link: "/project-details", title: "Project Details" }, 
-    ],
-  },
+
+  // {
+  //   id: 3,
+  //   mega_menu: false,
+  //   has_dropdown: true,
+  //   title: "services",
+  //   link: "/project",
+  //   active: "",
+  //   sub_menus: [
+  //     { link: "/project", title: "Project" },
+  //     { link: "/project-details", title: "Project Details" },
+  //   ],
+  // },
 
   {
     id: 6,
@@ -59,7 +59,7 @@ const menu_data = [
     active: "",
     sub_menus: [
       // { link: "/project", title: "Project" },
-      // { link: "/project-details", title: "Project Details" }, 
+      // { link: "/project-details", title: "Project Details" },
     ],
   },
 
@@ -77,7 +77,7 @@ const menu_data = [
       // { link: "/blog-details-2", title: "Blog Details 02" },
     ],
   },
-  
+
   {
     id: 5,
     mega_menu: false,
@@ -86,7 +86,5 @@ const menu_data = [
     link: "/contact",
     active: "",
   },
-  
-
 ];
 export default menu_data;
