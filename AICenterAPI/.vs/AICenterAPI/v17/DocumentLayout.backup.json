@@ -1,53 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Project\\AICenter\\tvu-ai-center\\AICenterAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A53B1BAA-6C1F-4176-97D3-A439190B3691}|AICenterAPI.csproj|d:\\project\\aicenter\\tvu-ai-center\\aicenterapi\\aicenterapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{A53B1BAA-6C1F-4176-97D3-A439190B3691}|AICenterAPI.csproj|solutionrelative:aicenterapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A53B1BAA-6C1F-4176-97D3-A439190B3691}|AICenterAPI.csproj|d:\\project\\aicenter\\tvu-ai-center\\aicenterapi\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A53B1BAA-6C1F-4176-97D3-A439190B3691}|AICenterAPI.csproj|solutionrelative:controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AICenterAPI",
-              "DocumentMoniker": "D:\\Project\\AICenter\\tvu-ai-center\\AICenterAPI\\AICenterAPI.csproj",
-              "RelativeDocumentMoniker": "AICenterAPI.csproj",
-              "ToolTip": "D:\\Project\\AICenter\\tvu-ai-center\\AICenterAPI\\AICenterAPI.csproj",
-              "RelativeToolTip": "AICenterAPI.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-27T06:57:28.741Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "D:\\Project\\AICenter\\tvu-ai-center\\AICenterAPI\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
-              "ToolTip": "D:\\Project\\AICenter\\tvu-ai-center\\AICenterAPI\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "Controllers\\WeatherForecastController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAsAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T06:53:42.447Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
