@@ -67,7 +67,7 @@ const AppMenu = () => {
                 {
                     label: 'Nhiệm vụ chức năng',
                     icon: 'pi pi-fw pi-slack',
-                    permission: 'StationManager',
+                    permission: 'AboutManager',
                     items: [
                         { label: 'Danh sách trạm dừng', icon: 'pi pi-fw pi-list', to: '/admin/bus-stations' },
                         { label: 'Thêm mới trạm dừng', icon: 'pi pi-fw pi-plus', to: '/admin/bus-stations/create' }
@@ -76,7 +76,7 @@ const AppMenu = () => {
                 {
                     label: 'Thành viên',
                     icon: 'pi pi-fw pi-users',
-                    permission: 'RouteManager',
+                    permission: 'AboutManager',
                     items: [
                         { label: 'Danh sách tuyến đường', icon: 'pi pi-fw pi-list', to: '/admin/bus-routes' },
                         { label: 'Thêm mới tuyến đường', icon: 'pi pi-fw pi-plus', to: '/admin/bus-routes/create' }
@@ -85,7 +85,7 @@ const AppMenu = () => {
                 {
                     label: 'Đối tác',
                     icon: 'pi pi-fw pi-user-plus',
-                    permission: 'TripManager',
+                    permission: 'AboutManager',
                     to: '/admin/bus-route-trips'
                 }
             ]

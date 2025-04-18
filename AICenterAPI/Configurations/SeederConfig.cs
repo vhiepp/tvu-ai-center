@@ -8,7 +8,7 @@ namespace AICenterAPI.Configurations
         {
             // Gọi Seeder
             AddressSeeder.SeedData(service);
-            //PermissionSeeder.SeedData(service);
+            PermissionSeeder.SeedData(service);
             UserSeeder.SeedData(service);
         }
     }

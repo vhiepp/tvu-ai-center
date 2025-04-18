@@ -10,6 +10,7 @@ namespace AICenterAPI.Configurations
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IAboutService, AboutService>();
         }
     }
 }

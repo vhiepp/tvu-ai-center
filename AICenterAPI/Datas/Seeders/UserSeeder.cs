@@ -8,9 +8,17 @@ namespace AICenterAPI.Datas.Seeders
         {
             new User
             {
-                UserName = "superadmin",
-                Password = "123",
+                UserName = "vanhiep",
+                Password = "aicenter123",
                 FirstName = "Văn Hiệp",
+                IsSuperAdmin = true,
+                IsCustomer = false,
+            },
+            new User
+            {
+                UserName = "nhutlam",
+                Password = "aicenter123",
+                FirstName = "Nguyễn Nhứt Lam",
                 IsSuperAdmin = true,
                 IsCustomer = false,
             },

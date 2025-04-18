@@ -4,12 +4,12 @@
     {
         public static List<Permission> permissions = new List<Permission>
         {
-            //new Permission
-            //{
-            //    Name = "Quản lý xe",
-            //    KeyName = "CarManager",
-            //    Description = "Quản lý xe khách, bao gồm các quyền thêm, xóa, sửa thông tin xe."
-            //},
+            new Permission
+            {
+                Name = "Quản lý trang Giới thiệu",
+                KeyName = "AboutManager",
+                Description = "Quản lý các thông tin trên trang Giới thiệu"
+            },
         };
         public static void SeedData(IServiceProvider serviceProvider)
         {
