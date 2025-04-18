@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UltraBusAPI.Datas;
+using AICenterAPI.Datas;
 
 namespace AICenterAPI.Configurations
 {

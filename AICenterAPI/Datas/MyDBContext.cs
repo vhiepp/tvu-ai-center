@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace UltraBusAPI.Datas
+namespace AICenterAPI.Datas
 {
     public class MyDBContext : DbContext
     {

@@ -1,8 +1,8 @@
 ﻿
 using AICenterAPI.Configurations;
 using Microsoft.EntityFrameworkCore;
+using AICenterAPI.Datas;
 using UltraBusAPI.Configurations;
-using UltraBusAPI.Datas;
 
 namespace AICenterAPI
 {
@@ -15,12 +15,24 @@ namespace AICenterAPI
             // Add services to the container.
             DatabaseConfig.AddDbContext(builder);
 
+            RepositoryConfig.AddRepositorys(builder.Services);
+
+            ServiceConfig.AddServices(builder.Services);
+
+            JwtConfig.AddJwtConfig(builder.Services, builder.Configuration);
+
+            CorsConfig.AddCorsConfig(builder.Services);
+
+            SwaggerConfig.AddSwaggerGen(builder.Services);
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            FileConfig.AddPublicFolder(app);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -32,6 +44,8 @@ namespace AICenterAPI
             app.UseCors("AllowAll");
 
             app.UseAuthorization();
+
+            MiddlewareConfig.AddMiddleware(app);
 
             // Gọi Seeder
             SeederConfig.Run(app.Services);

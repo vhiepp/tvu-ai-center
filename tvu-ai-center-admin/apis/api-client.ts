@@ -7,7 +7,7 @@ if (typeof window !== 'undefined') {
 }
 
 export const apiClient = axios.create({
-    baseURL: 'http://localhost:5200/api',
+    baseURL: 'http://localhost:5237/api',
     headers: {
         'Content-Type': 'application/json',
         ...authorization

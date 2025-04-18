@@ -1,4 +1,4 @@
-﻿namespace UltraBusAPI.Datas
+﻿namespace AICenterAPI.Datas
 {
     public class RolePermission
     {

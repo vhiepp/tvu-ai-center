@@ -1,6 +1,6 @@
-﻿using UltraBusAPI.Datas.Seeders;
+﻿using AICenterAPI.Datas.Seeders;
 
-namespace UltraBusAPI.Configurations
+namespace AICenterAPI.Configurations
 {
     public class SeederConfig
     {
@@ -9,7 +9,7 @@ namespace UltraBusAPI.Configurations
             // Gọi Seeder
             AddressSeeder.SeedData(service);
             //PermissionSeeder.SeedData(service);
-            //UserSeeder.SeedData(service);
+            UserSeeder.SeedData(service);
         }
     }
 }

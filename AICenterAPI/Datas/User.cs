@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
-namespace UltraBusAPI.Datas
+namespace AICenterAPI.Datas
 {
     public enum GenderType
     {

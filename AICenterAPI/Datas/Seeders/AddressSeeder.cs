@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace UltraBusAPI.Datas.Seeders
+namespace AICenterAPI.Datas.Seeders
 {
     public static class AddressSeeder
     {

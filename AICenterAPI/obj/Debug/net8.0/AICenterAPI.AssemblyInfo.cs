@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AICenterAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5dc7c4a2039440488e516080733a301af7eb5d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+091ab5d73f369f4120ef021f3997bbb9848752ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("AICenterAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AICenterAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

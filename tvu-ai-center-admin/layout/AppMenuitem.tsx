@@ -8,8 +8,12 @@ import { CSSTransition } from 'react-transition-group';
 import { MenuContext } from './context/menucontext';
 import { AppMenuItemProps } from '@/types';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { fetcher } from '@/functions';
+import useSWR from 'swr';
+import { permisssionApi } from '@/apis/auth-api';
 
 const AppMenuitem = (props: AppMenuItemProps) => {
+    const { data, error } = useSWR(permisssionApi, fetcher);
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { activeMenu, setActiveMenu } = useContext(MenuContext);
@@ -45,15 +49,46 @@ const AppMenuitem = (props: AppMenuItemProps) => {
         else setActiveMenu(key);
     };
 
-    const subMenu = item!.items && item!.visible !== false && (
-        <CSSTransition timeout={{ enter: 1000, exit: 450 }} classNames="layout-submenu" in={props.root ? true : active} key={item!.label}>
-            <ul>
-                {item!.items.map((child, i) => {
-                    return <AppMenuitem item={child} index={i} className={child.badgeClass} parentKey={key} key={child.label} />;
-                })}
-            </ul>
-        </CSSTransition>
-    );
+    const subMenu = () => {
+        if (item!.items && item!.visible !== false) {
+            return (
+                <CSSTransition timeout={{ enter: 1000, exit: 450 }} classNames="layout-submenu" in={props.root ? true : active} key={item!.label}>
+                    <ul>
+                        {item!.items.map((child, i) => {
+                            return <AppMenuitem item={child} index={i} className={child.badgeClass} parentKey={key} key={child.label} />;
+                        })}
+                    </ul>
+                </CSSTransition>
+            );
+        }
+    };
+
+    // if (item.permission && (!data || data.length == 0)) return null;
+
+    if (item?.is_superadmin && data && !data.some((obj) => obj.keyName === 'SuperAdmin')) {
+        return null;
+    }
+
+    if (item!.items && item!.visible !== false) {
+        if (!item!.permission) item.permission = '';
+        item.items.forEach((child) => {
+            if (child.permission) item.permission += ',' + child.permission;
+        });
+    }
+    // console.log('item', data);
+
+    if (data && item?.permission && !data.some((obj) => obj.keyName === 'SuperAdmin')) {
+        const menuPermissions = item.permission.split(',');
+        const userPermissions = data.map((permission) => permission.keyName);
+
+        // console.log('menuPermissions', menuPermissions);
+        // console.log('userPermissions', userPermissions);
+
+        const hasPermission = menuPermissions.some((permission) => userPermissions.includes(permission));
+        if (!hasPermission) {
+            return null;
+        }
+    }
 
     return (
         <li className={classNames({ 'layout-root-menuitem': props.root, 'active-menuitem': active })}>
@@ -76,7 +111,7 @@ const AppMenuitem = (props: AppMenuItemProps) => {
                 </Link>
             ) : null}
 
-            {subMenu}
+            {subMenu()}
         </li>
     );
 };
