@@ -6,12 +6,44 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AICenterAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabase : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    AuthorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Category_Contents",
+                columns: table => new
+                {
+                    Language = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category_Contents", x => new { x.CategoryId, x.Language });
+                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -35,6 +67,59 @@ namespace AICenterAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Districts", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "News",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Thumb = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AuthorAvatar = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AuthorName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AuthorSubtitle = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AuthorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "News_Categories",
+                columns: table => new
+                {
+                    NewsId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News_Categories", x => new { x.NewsId, x.CategoryId });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "News_Contents",
+                columns: table => new
+                {
+                    Language = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NewsId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_News_Contents", x => new { x.NewsId, x.Language });
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -81,7 +166,7 @@ namespace AICenterAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "RolePermissions",
+                name: "Role_Permissions",
                 columns: table => new
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false),
@@ -89,7 +174,7 @@ namespace AICenterAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RolePermissions", x => new { x.RoleId, x.PermissionId });
+                    table.PrimaryKey("PK_Role_Permissions", x => new { x.RoleId, x.PermissionId });
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -173,7 +258,22 @@ namespace AICenterAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Category_Contents");
+
+            migrationBuilder.DropTable(
                 name: "Districts");
+
+            migrationBuilder.DropTable(
+                name: "News");
+
+            migrationBuilder.DropTable(
+                name: "News_Categories");
+
+            migrationBuilder.DropTable(
+                name: "News_Contents");
 
             migrationBuilder.DropTable(
                 name: "Permissions");
@@ -182,7 +282,7 @@ namespace AICenterAPI.Migrations
                 name: "Provinces");
 
             migrationBuilder.DropTable(
-                name: "RolePermissions");
+                name: "Role_Permissions");
 
             migrationBuilder.DropTable(
                 name: "Roles");

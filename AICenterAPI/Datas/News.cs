@@ -1,0 +1,22 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AICenterAPI.Datas
+{
+    public class News
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public string? Slug { get; set; }
+
+        public string? Thumb { get; set; }
+
+        public string? AuthorAvatar { get; set; }
+
+        public string? AuthorName { get; set; }
+
+        public string? AuthorSubtitle { get; set; }
+
+        public int AuthorId { get; set; }
+    }
+}

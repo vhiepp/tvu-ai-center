@@ -18,5 +18,10 @@ namespace AICenterAPI.Services
             var data = JsonSerializer.Deserialize<AboutModel>(json) ?? new AboutModel();
             return data;
         }
+
+        public Task UpdateDescription(string description)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

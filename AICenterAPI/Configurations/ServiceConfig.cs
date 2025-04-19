@@ -11,6 +11,7 @@ namespace AICenterAPI.Configurations
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAboutService, AboutService>();
+            services.AddScoped<ICategoryService, CategoryService>();
         }
     }
 }

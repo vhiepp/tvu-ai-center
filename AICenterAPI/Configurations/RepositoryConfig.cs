@@ -14,6 +14,11 @@ namespace AICenterAPI.Configurations
             services.AddScoped<IProvinceRepository, ProvinceRepository>();
             services.AddScoped<IDistrictRepository, DistrictRepository>();
             services.AddScoped<IWardRepository, WardRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryContentRepository, CategoryContentRepository>();
+            services.AddScoped<INewsRepository, NewsRepository>();
+            services.AddScoped<INewsCategoryRepository, NewsCategoryRepository>();
+            services.AddScoped<INewsContentRepository, NewsContentRepository>();
         }
     }
 }
