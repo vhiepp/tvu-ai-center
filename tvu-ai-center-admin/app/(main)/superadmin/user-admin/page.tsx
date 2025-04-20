@@ -20,7 +20,7 @@ const UserAdminPage = () => {
     const renderHeader1 = () => {
         return (
             <div className="flex justify-content-between">
-                <Button type="button" icon="pi pi-plus" label="Thêm người quản trị" outlined onClick={() => router.push('/admin/user-admin/create')} />
+                <Button type="button" icon="pi pi-plus" label="Thêm người quản trị" outlined onClick={() => router.push('/superadmin/user-admin/create')} />
             </div>
         );
     };
@@ -66,8 +66,14 @@ const UserAdminPage = () => {
     const actionBody = (rowData: any) => {
         return (
             <div className="flex justify-content-center gap-2">
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" onClick={() => router.push(`/admin/user-admin/${rowData.id}`)} />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-danger" onClick={() => deleteClickButton(rowData)} />
+                {rowData.isSuperAdmin ? (
+                    <Button icon="pi pi-pencil" className="p-button-rounded p-button-secondary p-mr-2" disabled />
+                ) : (
+                    <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" onClick={() => router.push(`/superadmin/user-admin/${rowData.id}`)} />
+                )}
+                {/* <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" onClick={() => router.push(`/superadmin/user-admin/${rowData.id}`)} /> */}
+                {rowData.isSuperAdmin ? <Button icon="pi pi-trash" className="p-button-rounded p-button-secondary" disabled /> : <Button icon="pi pi-trash" className="p-button-rounded p-button-danger" onClick={() => deleteClickButton(rowData)} />}
+                {/* <Button icon="pi pi-trash" className="p-button-rounded p-button-danger" onClick={() => deleteClickButton(rowData)} /> */}
             </div>
         );
     };

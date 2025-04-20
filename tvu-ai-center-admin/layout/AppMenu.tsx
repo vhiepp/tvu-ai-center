@@ -38,16 +38,57 @@ const AppMenu = () => {
                     label: 'Nhóm quyền',
                     icon: 'pi pi-fw pi-lock',
                     items: [
-                        { label: 'Danh sách quyền', icon: 'pi pi-fw pi-list', to: '/admin/role-groups' },
-                        { label: 'Thêm mới quyền', icon: 'pi pi-fw pi-plus', to: '/admin/role-groups/create' }
+                        { label: 'Danh sách quyền', icon: 'pi pi-fw pi-list', to: '/superadmin/role-groups' },
+                        { label: 'Thêm mới quyền', icon: 'pi pi-fw pi-plus', to: '/superadmin/role-groups/create' }
                     ]
                 },
                 {
                     label: 'User quản trị',
                     icon: 'pi pi-fw pi-user',
                     items: [
-                        { label: 'Danh sách quản trị', icon: 'pi pi-fw pi-list', to: '/admin/user-admin' },
-                        { label: 'Thêm mới quản trị', icon: 'pi pi-fw pi-plus', to: '/admin/user-admin/create' }
+                        { label: 'Danh sách quản trị', icon: 'pi pi-fw pi-list', to: '/superadmin/user-admin' },
+                        { label: 'Thêm mới quản trị', icon: 'pi pi-fw pi-plus', to: '/superadmin/user-admin/create' }
+                    ]
+                }
+            ]
+        },
+        {
+            label: 'Nội dung',
+            items: [
+                {
+                    label: 'Danh mục',
+                    icon: 'pi pi-fw pi-list',
+                    permission: 'CategoryManager',
+                    items: [
+                        { label: 'Danh sách danh mục', icon: 'pi pi-fw pi-list', to: '/categories' },
+                        { label: 'Thêm mới danh mục', icon: 'pi pi-fw pi-plus', to: '/categories/create' }
+                    ]
+                },
+                {
+                    label: 'Tin tức',
+                    icon: 'pi pi-fw pi-copy',
+                    permission: 'NewsManager',
+                    items: [
+                        { label: 'Danh sách tin tức', icon: 'pi pi-fw pi-list', to: '/news' },
+                        { label: 'Thêm mới tin tức', icon: 'pi pi-fw pi-plus', to: '/news/create' }
+                    ]
+                },
+                {
+                    label: 'Sản phẩm',
+                    icon: 'pi pi-fw pi-th-large',
+                    permission: 'ProductManager',
+                    items: [
+                        { label: 'Danh sách sản phẩm', icon: 'pi pi-fw pi-list', to: '/products' },
+                        { label: 'Thêm mới sản phẩm', icon: 'pi pi-fw pi-plus', to: '/products/create' }
+                    ]
+                },
+                {
+                    label: 'Nghiên cứu',
+                    icon: 'pi pi-fw pi-check-circle',
+                    permission: 'ResearchManager',
+                    items: [
+                        { label: 'Danh sách nghiên cứu', icon: 'pi pi-fw pi-list', to: '/research' },
+                        { label: 'Thêm mới nghiên cứu', icon: 'pi pi-fw pi-plus', to: '/research/create' }
                     ]
                 }
             ]
@@ -58,7 +99,8 @@ const AppMenu = () => {
                 {
                     label: 'Giới thiệu',
                     icon: 'pi pi-fw pi-info-circle',
-                    permission: 'AboutManager'
+                    permission: 'AboutManager',
+                    to: '/about'
                     // items: [
                     //     { label: 'Danh sách xe', icon: 'pi pi-fw pi-list', to: '/admin/bus' },
                     //     { label: 'Thêm mới xe', icon: 'pi pi-fw pi-plus', to: '/admin/bus/create' }
@@ -68,25 +110,52 @@ const AppMenu = () => {
                     label: 'Nhiệm vụ chức năng',
                     icon: 'pi pi-fw pi-slack',
                     permission: 'AboutManager',
-                    items: [
-                        { label: 'Danh sách trạm dừng', icon: 'pi pi-fw pi-list', to: '/admin/bus-stations' },
-                        { label: 'Thêm mới trạm dừng', icon: 'pi pi-fw pi-plus', to: '/admin/bus-stations/create' }
-                    ]
+                    to: '/about'
+                    // items: [
+                    //     { label: 'Danh sách trạm dừng', icon: 'pi pi-fw pi-list', to: '/admin/bus-stations' },
+                    //     { label: 'Thêm mới trạm dừng', icon: 'pi pi-fw pi-plus', to: '/admin/bus-stations/create' }
+                    // ]
                 },
                 {
                     label: 'Thành viên',
                     icon: 'pi pi-fw pi-users',
                     permission: 'AboutManager',
-                    items: [
-                        { label: 'Danh sách tuyến đường', icon: 'pi pi-fw pi-list', to: '/admin/bus-routes' },
-                        { label: 'Thêm mới tuyến đường', icon: 'pi pi-fw pi-plus', to: '/admin/bus-routes/create' }
-                    ]
+                    to: '/about'
+                    // items: [
+                    //     { label: 'Danh sách tuyến đường', icon: 'pi pi-fw pi-list', to: '/admin/bus-routes' },
+                    //     { label: 'Thêm mới tuyến đường', icon: 'pi pi-fw pi-plus', to: '/admin/bus-routes/create' }
+                    // ]
                 },
                 {
                     label: 'Đối tác',
                     icon: 'pi pi-fw pi-user-plus',
                     permission: 'AboutManager',
                     to: '/admin/bus-route-trips'
+                }
+            ]
+        },
+        {
+            label: 'Cấu hình',
+            items: [
+                {
+                    label: 'Thông tin liên hệ',
+                    icon: 'pi pi-fw pi-send',
+                    permission: 'ContactManager',
+                    to: '/about'
+                    // items: [
+                    //     { label: 'Danh sách xe', icon: 'pi pi-fw pi-list', to: '/admin/bus' },
+                    //     { label: 'Thêm mới xe', icon: 'pi pi-fw pi-plus', to: '/admin/bus/create' }
+                    // ]
+                },
+                {
+                    label: 'Mạng xã hội',
+                    icon: 'pi pi-fw pi-facebook',
+                    permission: 'AboutManager',
+                    to: '/about'
+                    // items: [
+                    //     { label: 'Danh sách xe', icon: 'pi pi-fw pi-list', to: '/admin/bus' },
+                    //     { label: 'Thêm mới xe', icon: 'pi pi-fw pi-plus', to: '/admin/bus/create' }
+                    // ]
                 }
             ]
         }

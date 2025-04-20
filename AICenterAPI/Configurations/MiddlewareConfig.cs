@@ -1,5 +1,5 @@
-﻿using AICenterAPI.Middlewares;
-using Microsoft.Extensions.FileProviders;
+﻿using AICenterAPI.Extensions;
+using AICenterAPI.Middlewares;
 
 namespace AICenterAPI.Configurations
 {
@@ -8,6 +8,8 @@ namespace AICenterAPI.Configurations
         public static void AddMiddleware(IApplicationBuilder app)
         {
             app.UseMiddleware<PermissionMiddleware>();
+            app.UseAppRequestLocalization();
+            app.UseCustomLocalizationMiddleware();
         }
     }
 }

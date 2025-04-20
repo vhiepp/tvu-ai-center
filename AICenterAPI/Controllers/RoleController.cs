@@ -2,6 +2,7 @@
 using AICenterAPI.Attributes;
 using AICenterAPI.Models;
 using AICenterAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UltraBusAPI.Controllers
 {
@@ -17,6 +18,7 @@ namespace UltraBusAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Permission("SuperAdmin")]
         public async Task<IActionResult> GetAll()
         {
@@ -32,6 +34,7 @@ namespace UltraBusAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         [Permission("SuperAdmin")]
         public async Task<IActionResult> Get(int id)
         {
@@ -57,6 +60,7 @@ namespace UltraBusAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Permission("SuperAdmin")]
         public async Task<IActionResult> Create(CreateRoleModel createRoleModel)
         {
@@ -71,6 +75,7 @@ namespace UltraBusAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         [Permission("SuperAdmin")]
         public async Task<IActionResult> Update(int id, CreateRoleModel roleModel)
         {
@@ -83,6 +88,7 @@ namespace UltraBusAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         [Permission("SuperAdmin")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -107,6 +113,7 @@ namespace UltraBusAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Permission("SuperAdmin")]
         public async Task<IActionResult> GetAll()
         {

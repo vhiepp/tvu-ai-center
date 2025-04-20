@@ -17,7 +17,7 @@ namespace AICenterAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             var about = await _aboutService.About();
             return Ok(new ApiResponse()

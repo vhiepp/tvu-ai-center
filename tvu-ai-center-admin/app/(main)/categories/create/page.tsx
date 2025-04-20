@@ -6,7 +6,7 @@ import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputSwitch } from 'primereact/inputswitch';
 import { apiClient } from '@/apis/api-client';
-import { getAdminPermissionsApi, createAdminRoleApi } from '@/apis/admin/role';
+import { createCategoryApi } from '@/apis/admin/category';
 import { useRouter } from 'next/navigation';
 
 interface DropdownItem {
@@ -16,57 +16,75 @@ interface DropdownItem {
 
 const RoleAdminCreate = () => {
     const [loading1, setLoading1] = useState(false);
-    const [permissions, setPermissions] = useState([]);
+    // const [permissions, setPermissions] = useState([]);
     const [switchValue, setSwitchValue] = useState({});
-    const [roleName, setRoleName] = useState('');
-    const [description, setDescription] = useState('');
-    const roleNameRef = useRef(null);
+    const [categoryViName, setCategoryViName] = useState('');
+    const [categoryEnName, setCategoryEnName] = useState('');
+    const [descriptionVi, setDescriptionVi] = useState('');
+    const [descriptionEn, setDescriptionEn] = useState('');
+
+    const categoryViNameRef = useRef(null);
+    const categoryEnNameRef = useRef(null);
     const router = useRouter();
 
-    const getPermissions = async () => {
-        const response = await apiClient.get(getAdminPermissionsApi);
-        const pers = response.data.data;
-        pers.forEach((per) => {
-            setSwitchValue((prev) => ({ ...prev, [per.id]: false }));
-        });
-        setPermissions(pers);
-    };
+    // const getPermissions = async () => {
+    //     const response = await apiClient.get(getAdminPermissionsApi);
+    //     const pers = response.data.data;
+    //     pers.forEach((per) => {
+    //         setSwitchValue((prev) => ({ ...prev, [per.id]: false }));
+    //     });
+    //     setPermissions(pers);
+    // };
 
     const changeSwitchValue = (key: number, value: boolean) => {
         setSwitchValue((prev) => ({ ...prev, [key]: value }));
     };
 
     const saveRole = async (exit = false) => {
-        if (!roleName) {
-            roleNameRef.current.focus();
+        if (!categoryViName) {
+            categoryViNameRef.current.focus();
             return;
         }
-        const pers = Object.keys(switchValue)
-            .filter((key) => switchValue[key])
-            .map(Number);
+        if (!categoryEnName) {
+            categoryEnNameRef.current.focus();
+            return;
+        }
+        // const pers = Object.keys(switchValue)
+        //     .filter((key) => switchValue[key])
+        //     .map(Number);
         // if (pers.length == 0) {
         //     alert('Vui lòng chọn ít nhất một quyền');
         //     return;
         // }
         setLoading1(true);
         const data = {
-            name: roleName,
-            description: description,
-            permissionIds: pers
+            categoryContents: [
+                {
+                    language: 'vi',
+                    name: categoryViName,
+                    description: descriptionVi
+                },
+                {
+                    language: 'en',
+                    name: categoryEnName,
+                    description: descriptionEn
+                }
+            ]
         };
 
-        const response = await apiClient.post(createAdminRoleApi, data);
+        const response = await apiClient.post(createCategoryApi, data);
 
         setLoading1(false);
 
         if (response.status == 200) {
             if (exit) {
-                router.push('/admin/role-groups');
+                router.push('/categories');
             } else {
-                setRoleName('');
-                setDescription('');
-                setSwitchValue({});
-                roleNameRef.current.focus();
+                setCategoryViName('');
+                setCategoryEnName('');
+                setDescriptionVi('');
+                setDescriptionEn('');
+                categoryViNameRef.current.focus();
             }
         } else {
             alert('Có lỗi xảy ra');
@@ -74,32 +92,47 @@ const RoleAdminCreate = () => {
     };
 
     useEffect(() => {
-        getPermissions();
+        // getPermissions();
     }, []);
 
     return (
         <div className="grid">
             <div className="col-12">
                 <div className="card">
-                    <h5>Thêm quyền quản trị hệ thống</h5>
-                    <div className="p-fluid formgrid grid gap-2">
+                    <h5>Thêm danh mục</h5>
+                    <div className="p-fluid formgrid grid">
                         <div className="field col-12 md:col-6">
                             <label htmlFor="role_name" className="text-lg">
-                                Tên quyền <span className="p-error">(*)</span>
+                                Tên danh mục <span className="p-error">(*)</span>
                             </label>
-                            <InputText ref={roleNameRef} id="role_name" value={roleName} onChange={(e) => setRoleName(e.target.value)} type="text" />
+                            <InputText ref={categoryViNameRef} placeholder="Ví dụ: trí tuệ nhân tạo" id="role_name" value={categoryViName} onChange={(e) => setCategoryViName(e.target.value)} type="text" />
                         </div>
-                        <div className="field col-12">
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="role_name" className="text-lg">
+                                Category name <span className="p-error">(*)</span>
+                            </label>
+                            <InputText ref={categoryEnNameRef} placeholder="Example: artificial intelligence" id="role_name" value={categoryEnName} onChange={(e) => setCategoryEnName(e.target.value)} type="text" />
+                        </div>
+                        <div className="field col-12 md:col-6">
                             <label htmlFor="address" className="text-lg">
                                 Mô tả{' '}
-                                <span className="text-sm">
+                                {/* <span className="text-sm">
                                     <i>(không bắt buộc)</i>
-                                </span>
+                                </span> */}
                             </label>
-                            <InputTextarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} rows={2} />
+                            <InputTextarea id="description" value={descriptionVi} onChange={(e) => setDescriptionVi(e.target.value)} rows={2} />
+                        </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="address" className="text-lg">
+                                Description{' '}
+                                {/* <span className="text-sm">
+                                    <i>(không bắt buộc)</i>
+                                </span> */}
+                            </label>
+                            <InputTextarea id="description1" value={descriptionEn} onChange={(e) => setDescriptionEn(e.target.value)} rows={2} />
                         </div>
 
-                        <div className="field col-12">
+                        {/* <div className="field col-12">
                             <label className="text-lg">Các quyền hạn</label>
                         </div>
                         <div className="field col-12">
@@ -115,7 +148,7 @@ const RoleAdminCreate = () => {
                                     );
                                 })}
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="field col-12">
                             <div className="grid mt-4 justify-content-end align-items-center gap-2">

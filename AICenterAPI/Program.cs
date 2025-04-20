@@ -3,6 +3,7 @@ using AICenterAPI.Configurations;
 using Microsoft.EntityFrameworkCore;
 using AICenterAPI.Datas;
 using UltraBusAPI.Configurations;
+using AICenterAPI.Extensions;
 
 namespace AICenterAPI
 {
@@ -25,6 +26,7 @@ namespace AICenterAPI
 
             SwaggerConfig.AddSwaggerGen(builder.Services);
 
+            builder.Services.AddAppLocalization();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

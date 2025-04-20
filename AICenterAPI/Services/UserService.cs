@@ -130,7 +130,7 @@ namespace AICenterAPI.Services
             foreach (var userModel in user)
             {
                 RoleModel? roleModel = null;
-                if (userModel.RoleId != null)
+                if (userModel.RoleId != null && userModel.IsSuperAdmin == false)
                 {
                     var role = await _roleRepository.FindByIdAsync(userModel.RoleId.Value);
                     if (role != null)
@@ -140,6 +140,14 @@ namespace AICenterAPI.Services
                         roleModel.Name = role.Name;
                         roleModel.Description = role.Description;
                     }
+                } else
+                {
+                    roleModel = new RoleModel
+                    {
+                        Id = 0,
+                        Name = RoleDefaultTypes.SuperAdmin.Name,
+                        Description = RoleDefaultTypes.SuperAdmin.Description
+                    };
                 }
                 users.Add(new UserModel
                 {

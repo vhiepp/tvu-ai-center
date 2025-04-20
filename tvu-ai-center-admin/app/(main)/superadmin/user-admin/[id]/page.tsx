@@ -112,7 +112,7 @@ const UserAdminUpdate = () => {
 
         if (response.status == 200) {
             if (exit) {
-                router.push('/admin/user-admin');
+                router.push('/superadmin/user-admin');
             }
         } else {
             alert('Có lỗi xảy ra');

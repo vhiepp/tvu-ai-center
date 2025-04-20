@@ -41,7 +41,7 @@ namespace AICenterAPI.Repositories
 
         public async Task<List<User>> GetAllAdmin()
         {
-            return await _dbSet.Where(u => u.IsSuperAdmin == false && u.IsCustomer == false).ToListAsync();
+            return await _dbSet.Where(u => u.IsCustomer == false).ToListAsync();
         }
 
         public async Task<List<User>> GetByEmail(string email)
