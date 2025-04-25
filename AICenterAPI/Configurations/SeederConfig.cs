@@ -7,7 +7,7 @@ namespace AICenterAPI.Configurations
         public static void Run(IServiceProvider service)
         {
             // Gọi Seeder
-            AddressSeeder.SeedData(service);
+            // AddressSeeder.SeedData(service);
             PermissionSeeder.SeedData(service);
             UserSeeder.SeedData(service);
         }

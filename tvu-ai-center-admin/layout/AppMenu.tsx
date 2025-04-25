@@ -150,7 +150,7 @@ const AppMenu = () => {
                 {
                     label: 'Mạng xã hội',
                     icon: 'pi pi-fw pi-facebook',
-                    permission: 'AboutManager',
+                    permission: 'ContactManager',
                     to: '/about'
                     // items: [
                     //     { label: 'Danh sách xe', icon: 'pi pi-fw pi-list', to: '/admin/bus' },
