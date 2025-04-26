@@ -19,6 +19,9 @@ namespace AICenterAPI.Configurations
             services.AddScoped<INewsRepository, NewsRepository>();
             services.AddScoped<INewsCategoryRepository, NewsCategoryRepository>();
             services.AddScoped<INewsContentRepository, NewsContentRepository>();
+            services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IPartnerRepository, PartnerRepository>();
+
         }
     }
 }

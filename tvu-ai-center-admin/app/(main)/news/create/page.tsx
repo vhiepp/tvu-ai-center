@@ -8,15 +8,27 @@ import { InputSwitch } from 'primereact/inputswitch';
 import { apiClient } from '@/apis/api-client';
 import { createCategoryApi, getCategoriesApi } from '@/apis/admin/category';
 import { useRouter } from 'next/navigation';
-import Editor from '@/components/Editor';
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
-import ImagePicker from '@/components/forms/ImagePicker';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
+const ImagePicker = dynamic(() => import('@/components/forms/ImagePicker'), { ssr: false });
 
 interface DropdownItem {
     name: string;
     code: string;
 }
+
+interface InputValue {
+    name: string;
+    code: number;
+}
+
+const statusValues: Array<InputValue> = [
+    { name: 'Hiển thị', code: 1 },
+    { name: 'Ẩn', code: 2 }
+];
 
 const RoleAdminCreate = () => {
     const [loading1, setLoading1] = useState(false);
@@ -28,6 +40,7 @@ const RoleAdminCreate = () => {
     const [descriptionEn, setDescriptionEn] = useState('');
     const [multiselectValue, setMultiselectValue] = useState(null);
     const [multiselectValues, setMultiselectValues] = useState<DropdownItem[]>([]);
+    const [selectStatusValue, setSelectStatusValue] = useState(statusValues[0]);
 
     // const multiselectValues = [
     //     { name: 'Australia', code: 'AU' },
@@ -216,6 +229,12 @@ const RoleAdminCreate = () => {
                                 </span> */}
                             </label>
                             <Editor onChange={handleSaveContent} data={contentEn} />
+                        </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="password" className="text-lg">
+                                Trạng thái <span className="p-error">(*)</span>
+                            </label>
+                            <Dropdown value={selectStatusValue} onChange={(e) => setSelectStatusValue(e.value)} options={statusValues} optionLabel="name" placeholder="Chọn giới tính" />
                         </div>
 
                         {/* <div className="field col-12">

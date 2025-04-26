@@ -1,9 +1,10 @@
+import { domain } from "@/apis/apiClient";
 import { SocialLinksTwo } from "@/common/social-links";
 import team_data from "@/data/team-data";
 import { useTranslation } from "@/utils/i18n";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const team_content = {
   sub_title: "THE TEAM",
@@ -47,6 +48,19 @@ const social_links = [
 
 const TeamArea = ({ bg_style }) => {
   const { t } = useTranslation();
+  const [partners, setPartners] = useState([]);
+
+  const fetchPartner = async () => {
+    const response = await fetch(`${domain}/members`);
+    const data = await response.json();
+    // console.log(data);
+    setPartners(data.data);
+  };
+
+  useEffect(() => {
+    fetchPartner();
+  }, []);
+
   return (
     <>
       <div
@@ -113,12 +127,12 @@ const TeamArea = ({ bg_style }) => {
             </div>
           </div>
           <div className="row">
-            {team_data.slice(0, 4).map((item, i) => (
+            {partners.slice(0, 4).map((item, i) => (
               <div
                 key={i}
                 className={`col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-50 
                                       tp-team-border-right tp-border-after-${
-                                        item.cls
+                                        i + 1
                                       } 
                                       ${bg_style && "team-inner-border-right"}`}
               >
@@ -127,14 +141,33 @@ const TeamArea = ({ bg_style }) => {
                     bg_style && "tp-team-inner-title-color"
                   } z-index`}
                 >
-                  <div className="tp-team-img">
-                    <Image src={item.img} alt="theme-pure" />
+                  <div
+                    className=""
+                    style={{
+                      width: "180px",
+                      height: "180px",
+                      textAlign: "center",
+                      margin: "0 auto",
+                      borderRadius: "100%",
+                      overflow: "hidden",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <img
+                      src={item.avatar}
+                      alt="theme-pure"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
                   </div>
                   <div className="tp-team-content">
                     <h4 className="tp-team-title-sm">
-                      <Link href="/team-details">{item.name}</Link>
+                      <Link href="/team-details">{item.fullname}</Link>
                     </h4>
-                    <span>{item.job_title}</span>
+                    <span>{item.position}</span>
                   </div>
                   <div className="tp-team-social">
                     <SocialLinksTwo />

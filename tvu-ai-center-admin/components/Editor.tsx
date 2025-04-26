@@ -38,6 +38,7 @@ export default function Editor({ onChange, data }) {
                     code: CodeTool,
                     delimiter: Delimiter,
                     table: {
+                        // @ts-ignore
                         class: Table,
                         inlineToolbar: true,
                         config: {
@@ -53,7 +54,7 @@ export default function Editor({ onChange, data }) {
                 },
                 onChange: async () => {
                     const content = await editor.save();
-                    console.log('Content changed:', content);
+                    // console.log('Content changed:', content);
                     if (onChange) onChange(content);
                 }
             });

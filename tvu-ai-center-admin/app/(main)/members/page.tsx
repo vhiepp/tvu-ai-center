@@ -14,10 +14,11 @@ import { Toast } from 'primereact/toast';
 import { Toolbar } from 'primereact/toolbar';
 import { classNames } from 'primereact/utils';
 import React, { useEffect, useRef, useState } from 'react';
-import { ProductService } from '../../../demo/service/ProductService';
 import { Demo } from '@/types';
 import { useRouter } from 'next/navigation';
 import { Image } from 'primereact/image';
+import { apiClient } from '@/apis/api-client';
+import { getMemberApi } from '@/apis/member';
 /* @todo Used 'as any' for types here. Will fix in next version due to onSelectionChange event type issue. */
 const Crud = () => {
     let emptyProduct: Demo.Product = {
@@ -32,6 +33,7 @@ const Crud = () => {
         inventoryStatus: 'INSTOCK'
     };
 
+    const [loading1, setLoading1] = useState(true);
     const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
@@ -40,13 +42,24 @@ const Crud = () => {
     const [selectedProducts, setSelectedProducts] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [globalFilter, setGlobalFilter] = useState('');
+    const [data, setData] = useState([]);
     const toast = useRef<Toast>(null);
     const dt = useRef<DataTable<any>>(null);
 
     const router = useRouter();
 
+    const getDatas = async () => {
+        try {
+            const res = await apiClient.get(getMemberApi);
+            setData(res.data.data);
+            setLoading1(false);
+        } catch (error) {
+            console.error('error', error);
+        }
+    };
+
     useEffect(() => {
-        ProductService.getProducts().then((data) => setProducts(data as any));
+        getDatas();
     }, []);
 
     const formatCurrency = (value: number) => {
@@ -60,7 +73,7 @@ const Crud = () => {
         // setProduct(emptyProduct);
         // setSubmitted(false);
         // setProductDialog(true);
-        router.push('/news/create');
+        router.push('/members/create');
     };
 
     const hideDialog = () => {
@@ -201,7 +214,7 @@ const Crud = () => {
         return (
             <React.Fragment>
                 <div className="my-2">
-                    <Button label="Thêm tin tức mới" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
+                    <Button label="Thêm thành viên mới" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
                     <Button label="Xóa" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !(selectedProducts as any).length} />
                 </div>
             </React.Fragment>
@@ -211,7 +224,7 @@ const Crud = () => {
     const rightToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} chooseLabel="Import" className="mr-2 inline-block" />
+                {/* <FileUpload mode="basic" accept="image/*" maxFileSize={1000000} chooseLabel="Import" className="mr-2 inline-block" /> */}
                 <Button label="Export" icon="pi pi-upload" severity="help" onClick={exportCSV} />
             </React.Fragment>
         );
@@ -230,7 +243,7 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Title</span>
-                {rowData.title}
+                {rowData.fullname}
             </>
         );
     };
@@ -239,7 +252,7 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Image</span>
-                <Image preview src={`${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
+                <Image src={`${rowData.avatar}`} className="shadow-2" preview width="100" />
             </>
         );
     };
@@ -283,15 +296,15 @@ const Crud = () => {
     const actionBodyTemplate = (rowData: Demo.Product) => {
         return (
             <>
-                <Button icon="pi pi-pencil" rounded severity="success" className="mr-2" onClick={() => editProduct(rowData)} />
-                <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteProduct(rowData)} />
+                {/* <Button icon="pi pi-pencil" rounded severity="success" className="mr-2" onClick={() => editProduct(rowData)} /> */}
+                <Button icon="pi pi-trash" rounded severity="danger" onClick={() => confirmDeleteProduct(rowData)} />
             </>
         );
     };
 
     const header = (
         <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <h5 className="m-0">Danh sách tin tức</h5>
+            <h5 className="m-0">Danh sách thành viên</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.currentTarget.value)} placeholder="Search..." />
@@ -327,7 +340,7 @@ const Crud = () => {
 
                     <DataTable
                         ref={dt}
-                        value={products}
+                        value={data}
                         selection={selectedProducts}
                         onSelectionChange={(e) => setSelectedProducts(e.value as any)}
                         dataKey="id"
@@ -344,12 +357,16 @@ const Crud = () => {
                     >
                         <Column selectionMode="multiple" headerStyle={{ width: '4rem' }}></Column>
                         {/* <Column field="code" header="Code" sortable body={codeBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column> */}
-                        <Column field="title" header="Tiêu đề" sortable body={nameBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
-                        <Column header="Ảnh nền" body={imageBodyTemplate}></Column>
+                        <Column header="Ảnh đại diện" body={imageBodyTemplate}></Column>
+                        <Column field="fullname" header="Họ tên" sortable body={nameBodyTemplate} headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="position" header="Chức vụ" sortable headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="skills" header="Chuyên môn" sortable headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="email" header="Email" sortable headerStyle={{ minWidth: '15rem' }}></Column>
+                        <Column field="phoneNumber" header="Số điện thoại" sortable headerStyle={{ minWidth: '15rem' }}></Column>
                         {/* <Column field="price" header="Price" body={priceBodyTemplate} sortable></Column> */}
-                        <Column field="category" header="Danh mục" sortable body={categoryBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column>
-                        <Column field="inventoryStatus" header="Trạng thái" body={statusBodyTemplate} sortable headerStyle={{ minWidth: '10rem' }}></Column>
+                        {/* <Column field="category" header="Danh mục" sortable body={categoryBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column> */}
+                        {/* <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column> */}
+                        {/* <Column field="inventoryStatus" header="Trạng thái" body={statusBodyTemplate} sortable headerStyle={{ minWidth: '10rem' }}></Column> */}
                         <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
                     </DataTable>
 

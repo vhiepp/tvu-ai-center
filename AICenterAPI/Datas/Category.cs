@@ -3,7 +3,7 @@
 namespace AICenterAPI.Datas
 {
     public class Category
-    {
+    {             
         [Key]
         public int Id { get; set; }
 

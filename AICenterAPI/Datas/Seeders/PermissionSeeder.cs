@@ -40,6 +40,12 @@
                 KeyName = "ContactManager",
                 Description = "Quản lý thông tin liên hệ và các liên hệ của khách hàng"
             },
+            new Permission
+            {
+                Name = "Quản lý thành viên",
+                KeyName = "MemberManager",
+                Description = "Quản lý thông tin thành viên"
+            },
         };
         public static void SeedData(IServiceProvider serviceProvider)
         {

@@ -4,6 +4,7 @@ using AICenterAPI.Datas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AICenterAPI.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250426171534_AddMember")]
+    partial class AddMember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,9 +103,6 @@ namespace AICenterAPI.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Avatar")
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime?>("DateOfJoin")
                         .HasColumnType("datetime(6)");
 
@@ -127,23 +127,15 @@ namespace AICenterAPI.Migrations
                     b.Property<string>("Linkedln")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("NumberOrder")
-                        .HasColumnType("int");
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
-
-                    b.Property<bool>("Pin")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Position")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Skills")
+                        .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.Property<string>("Tiktok")
                         .HasColumnType("longtext");
@@ -214,31 +206,6 @@ namespace AICenterAPI.Migrations
                     b.HasKey("NewsId", "Language");
 
                     b.ToTable("News_Contents");
-                });
-
-            modelBuilder.Entity("AICenterAPI.Datas.Partner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Logo")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("NumberOrder")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Partners");
                 });
 
             modelBuilder.Entity("AICenterAPI.Datas.Permission", b =>

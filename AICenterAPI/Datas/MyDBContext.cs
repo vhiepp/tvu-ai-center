@@ -21,6 +21,8 @@ namespace AICenterAPI.Datas
         public DbSet<NewsCategory> NewsCategories { get; set; }
         public DbSet<CategoryContent> CategoryContents { get; set; }
         public DbSet<NewsContent> NewsContents { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<Partner> Partners { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

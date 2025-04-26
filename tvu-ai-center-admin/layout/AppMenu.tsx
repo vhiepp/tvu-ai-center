@@ -53,6 +53,49 @@ const AppMenu = () => {
             ]
         },
         {
+            label: 'Giới thiệu',
+            items: [
+                {
+                    label: 'Giới thiệu',
+                    icon: 'pi pi-fw pi-info-circle',
+                    permission: 'AboutManager',
+                    to: '/about'
+                    // items: [
+                    //     { label: 'Danh sách xe', icon: 'pi pi-fw pi-list', to: '/admin/bus' },
+                    //     { label: 'Thêm mới xe', icon: 'pi pi-fw pi-plus', to: '/admin/bus/create' }
+                    // ]
+                },
+                // {
+                //     label: 'Nhiệm vụ chức năng',
+                //     icon: 'pi pi-fw pi-slack',
+                //     permission: 'AboutManager',
+                //     to: '/about'
+                //     // items: [
+                //     //     { label: 'Danh sách trạm dừng', icon: 'pi pi-fw pi-list', to: '/admin/bus-stations' },
+                //     //     { label: 'Thêm mới trạm dừng', icon: 'pi pi-fw pi-plus', to: '/admin/bus-stations/create' }
+                //     // ]
+                // },
+                {
+                    label: 'Thành viên',
+                    icon: 'pi pi-fw pi-users',
+                    permission: 'MemberManager',
+                    items: [
+                        { label: 'Danh sách thành viên', icon: 'pi pi-fw pi-list', to: '/members' },
+                        { label: 'Thêm mới thành viên', icon: 'pi pi-fw pi-plus', to: '/members/create' }
+                    ]
+                },
+                {
+                    label: 'Đối tác',
+                    icon: 'pi pi-fw pi-user-plus',
+                    permission: 'AboutManager',
+                    items: [
+                        { label: 'Danh sách đối tác', icon: 'pi pi-fw pi-list', to: '/partner' },
+                        { label: 'Thêm mới đối tác', icon: 'pi pi-fw pi-plus', to: '/partner/create' }
+                    ]
+                }
+            ]
+        },
+        {
             label: 'Nội dung',
             items: [
                 {
@@ -93,47 +136,7 @@ const AppMenu = () => {
                 }
             ]
         },
-        {
-            label: 'Giới thiệu',
-            items: [
-                {
-                    label: 'Giới thiệu',
-                    icon: 'pi pi-fw pi-info-circle',
-                    permission: 'AboutManager',
-                    to: '/about'
-                    // items: [
-                    //     { label: 'Danh sách xe', icon: 'pi pi-fw pi-list', to: '/admin/bus' },
-                    //     { label: 'Thêm mới xe', icon: 'pi pi-fw pi-plus', to: '/admin/bus/create' }
-                    // ]
-                },
-                {
-                    label: 'Nhiệm vụ chức năng',
-                    icon: 'pi pi-fw pi-slack',
-                    permission: 'AboutManager',
-                    to: '/about'
-                    // items: [
-                    //     { label: 'Danh sách trạm dừng', icon: 'pi pi-fw pi-list', to: '/admin/bus-stations' },
-                    //     { label: 'Thêm mới trạm dừng', icon: 'pi pi-fw pi-plus', to: '/admin/bus-stations/create' }
-                    // ]
-                },
-                {
-                    label: 'Thành viên',
-                    icon: 'pi pi-fw pi-users',
-                    permission: 'AboutManager',
-                    to: '/about'
-                    // items: [
-                    //     { label: 'Danh sách tuyến đường', icon: 'pi pi-fw pi-list', to: '/admin/bus-routes' },
-                    //     { label: 'Thêm mới tuyến đường', icon: 'pi pi-fw pi-plus', to: '/admin/bus-routes/create' }
-                    // ]
-                },
-                {
-                    label: 'Đối tác',
-                    icon: 'pi pi-fw pi-user-plus',
-                    permission: 'AboutManager',
-                    to: '/admin/bus-route-trips'
-                }
-            ]
-        },
+
         {
             label: 'Cấu hình',
             items: [

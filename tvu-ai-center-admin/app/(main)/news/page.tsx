@@ -17,6 +17,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../../demo/service/ProductService';
 import { Demo } from '@/types';
 import { useRouter } from 'next/navigation';
+import { Image } from 'primereact/image';
 /* @todo Used 'as any' for types here. Will fix in next version due to onSelectionChange event type issue. */
 const Crud = () => {
     let emptyProduct: Demo.Product = {
@@ -238,7 +239,7 @@ const Crud = () => {
         return (
             <>
                 <span className="p-column-title">Image</span>
-                <img src={`${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
+                <Image src={`${rowData.image}`} alt={rowData.image} className="shadow-2" preview width="100" />
             </>
         );
     };

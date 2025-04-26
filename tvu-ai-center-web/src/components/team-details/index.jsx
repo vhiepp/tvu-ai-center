@@ -8,15 +8,16 @@ import TeamDetailsArea from "./team-details-area";
 const TeamDetails = () => {
   return (
     <>
-      <HeaderSix />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <main>
-            <BreadcrumbTwo title={"Team Single"} innertitle={" Team Member "} team_details={true} />
+            <BreadcrumbTwo
+              title={"Team Single"}
+              innertitle={" Team Member "}
+              team_details={true}
+            />
             <TeamDetailsArea />
-            <CtaArea />
           </main>
-          <FooterFive  style_contact={true} style_team={true} />
         </div>
       </div>
     </>

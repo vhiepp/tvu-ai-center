@@ -10,7 +10,6 @@ import { createCategoryApi, getCategoriesApi } from '@/apis/admin/category';
 import { useRouter } from 'next/navigation';
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
-import { Calendar } from 'primereact/calendar';
 import dynamic from 'next/dynamic';
 
 const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
@@ -41,7 +40,6 @@ const RoleAdminCreate = () => {
     const [descriptionEn, setDescriptionEn] = useState('');
     const [multiselectValue, setMultiselectValue] = useState(null);
     const [multiselectValues, setMultiselectValues] = useState<DropdownItem[]>([]);
-    const [calendarValue, setCalendarValue] = useState<any>(null);
     const [selectStatusValue, setSelectStatusValue] = useState(statusValues[0]);
 
     // const multiselectValues = [
@@ -173,58 +171,7 @@ const RoleAdminCreate = () => {
         <div className="grid">
             <div className="col-12">
                 <div className="card">
-                    <h5>Thêm sản phẩm đã thực hiện</h5>
                     <div className="p-fluid formgrid grid">
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor="role_name" className="text-lg">
-                                Tiêu đề <span className="p-error">(*)</span>
-                            </label>
-                            <InputText ref={categoryViNameRef} placeholder="Tiêu đề tiếng việt" id="role_name" value={categoryViName} onChange={(e) => setCategoryViName(e.target.value)} type="text" />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor="role_name" className="text-lg">
-                                Title <span className="p-error">(*)</span>
-                            </label>
-                            <InputText ref={categoryEnNameRef} placeholder="Tiêu đề tiếng anh" id="role_name" value={categoryEnName} onChange={(e) => setCategoryEnName(e.target.value)} type="text" />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor="password" className="text-lg">
-                                Danh mục <span className="p-error">(*)</span>
-                            </label>
-                            <MultiSelect
-                                value={multiselectValue}
-                                onChange={(e) => setMultiselectValue(e.value)}
-                                options={multiselectValues}
-                                itemTemplate={itemTemplate}
-                                optionLabel="name"
-                                placeholder="Chọn danh mục"
-                                filter
-                                className="multiselect-custom"
-                                display="chip"
-                            />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor="password" className="text-lg">
-                                Ngày hoàn thành <span className="p-error">(*)</span>
-                            </label>
-                            <Calendar showIcon showButtonBar dateFormat="dd/mm/yy" maxDate={new Date()} value={calendarValue} onChange={(e) => setCalendarValue(e.value ?? null)} />
-                        </div>
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor="password" className="text-lg">
-                                Ảnh nền <span className="p-error">(*)</span>
-                            </label>
-                            <ImagePicker setImageSrc={null} />
-                        </div>
-                        <div className="field col-12">
-                            <label htmlFor="role_name" className="text-lg">
-                                Đường dẫn{' '}
-                                <small>
-                                    <i>(nếu có)</i>
-                                </small>
-                            </label>
-                            <InputText ref={categoryViNameRef} placeholder="https://product-demo.com" id="link_demo" value={categoryViName} onChange={(e) => setCategoryViName(e.target.value)} type="url" />
-                        </div>
-
                         <div className="field col-12 md:col-6">
                             <label htmlFor="address" className="text-lg">
                                 Nội dung{' '}
@@ -245,38 +192,13 @@ const RoleAdminCreate = () => {
                             <Editor onChange={handleSaveContent} data={contentEn} />
                         </div>
 
-                        <div className="field col-12 md:col-6">
-                            <label htmlFor="password" className="text-lg">
-                                Trạng thái <span className="p-error">(*)</span>
-                            </label>
-                            <Dropdown value={selectStatusValue} onChange={(e) => setSelectStatusValue(e.value)} options={statusValues} optionLabel="name" placeholder="Chọn giới tính" />
-                        </div>
-
-                        {/* <div className="field col-12">
-                            <label className="text-lg">Các quyền hạn</label>
-                        </div>
-                        <div className="field col-12">
-                            <div className="grid">
-                                {permissions.map((permission) => {
-                                    return (
-                                        <div className="field col-12 md:col-6 lg:col-4" key={permission.id} title={permission.description}>
-                                            <div className="flex align-items-center gap-2 pb-2">
-                                                <InputSwitch checked={switchValue[permission.id]} onChange={(e) => changeSwitchValue(permission.id, e.value ?? false)} />
-                                                <label className="text-lg">{permission.name}</label>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div> */}
-
                         <div className="field col-12">
                             <div className="grid mt-4 justify-content-end align-items-center gap-2">
-                                <div className="col-12 md:col-6 lg:col-2">
+                                {/* <div className="col-12 md:col-6 lg:col-2">
                                     <Button label="Lưu và thêm mới" icon="pi pi-save" className="p-button-info" loading={loading1} onClick={() => saveRole()} />
-                                </div>
+                                </div> */}
                                 <div className="col-12 md:col-6 lg:col-2">
-                                    <Button label="Lưu và thoát" icon="pi pi-save" className="p-button-success" loading={loading1} onClick={() => saveRole(true)} />
+                                    <Button label="Lưu" icon="pi pi-save" className="p-button-success" loading={loading1} onClick={() => saveRole(true)} />
                                 </div>
                             </div>
                         </div>

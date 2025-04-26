@@ -31,6 +31,13 @@ const statusValues: Array<InputValue> = [
     { name: 'Ẩn', code: 2 }
 ];
 
+const progressValues: Array<InputValue> = [
+    { name: 'Đã hoàn thành', code: 1 },
+    { name: 'Đang thực hiện', code: 2 },
+    { name: 'Đã hủy', code: 3 },
+    { name: 'Đã tạm dừng', code: 4 }
+];
+
 const RoleAdminCreate = () => {
     const [loading1, setLoading1] = useState(false);
     // const [permissions, setPermissions] = useState([]);
@@ -41,8 +48,10 @@ const RoleAdminCreate = () => {
     const [descriptionEn, setDescriptionEn] = useState('');
     const [multiselectValue, setMultiselectValue] = useState(null);
     const [multiselectValues, setMultiselectValues] = useState<DropdownItem[]>([]);
-    const [calendarValue, setCalendarValue] = useState<any>(null);
+    const [calendarValue1, setCalendarValue1] = useState<any>(null);
+    const [calendarValue2, setCalendarValue2] = useState<any>(null);
     const [selectStatusValue, setSelectStatusValue] = useState(statusValues[0]);
+    const [selectProgressValue, setSelectProgressValue] = useState(progressValues[0]);
 
     // const multiselectValues = [
     //     { name: 'Australia', code: 'AU' },
@@ -173,7 +182,7 @@ const RoleAdminCreate = () => {
         <div className="grid">
             <div className="col-12">
                 <div className="card">
-                    <h5>Thêm sản phẩm đã thực hiện</h5>
+                    <h5>Thêm nghiên cứu</h5>
                     <div className="p-fluid formgrid grid">
                         <div className="field col-12 md:col-6">
                             <label htmlFor="role_name" className="text-lg">
@@ -205,10 +214,37 @@ const RoleAdminCreate = () => {
                         </div>
                         <div className="field col-12 md:col-6">
                             <label htmlFor="password" className="text-lg">
-                                Ngày hoàn thành <span className="p-error">(*)</span>
+                                Tiến độ <span className="p-error">(*)</span>
                             </label>
-                            <Calendar showIcon showButtonBar dateFormat="dd/mm/yy" maxDate={new Date()} value={calendarValue} onChange={(e) => setCalendarValue(e.value ?? null)} />
+                            <Dropdown value={selectProgressValue} onChange={(e) => setSelectProgressValue(e.value)} options={progressValues} optionLabel="name" placeholder="Tiến độ" />
                         </div>
+
+                        <div className="field col-12">
+                            <div className="grid">
+                                <div className="field col-12 md:col-6">
+                                    <label htmlFor="password" className="text-lg">
+                                        Ngày bắt đầu <span className="p-error">(*)</span>
+                                    </label>
+                                    <Calendar showIcon showButtonBar dateFormat="dd/mm/yy" maxDate={new Date()} value={calendarValue1} onChange={(e) => setCalendarValue1(e.value ?? null)} />
+                                </div>
+                                <div className="field col-12 md:col-6">
+                                    <label htmlFor="password" className="text-lg">
+                                        Ngày kết thúc <span className="p-error">(*)</span>
+                                    </label>
+                                    <Calendar
+                                        showIcon
+                                        showButtonBar
+                                        dateFormat="dd/mm/yy"
+                                        disabled={!calendarValue1}
+                                        minDate={calendarValue1 ?? new Date()}
+                                        // maxDate={new Date()}
+                                        value={calendarValue1 ? calendarValue2 : null}
+                                        onChange={(e) => setCalendarValue2(calendarValue1 && e.value ? e.value : null)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="field col-12 md:col-6">
                             <label htmlFor="password" className="text-lg">
                                 Ảnh nền <span className="p-error">(*)</span>

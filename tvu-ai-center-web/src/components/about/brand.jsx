@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // brand img import here
 import brand_img_1 from "../../../public/assets/img/brand/brand-inner-1.png";
@@ -12,6 +11,8 @@ import brand_img_7 from "../../../public/assets/img/brand/brand-inner-7.png";
 import brand_img_8 from "../../../public/assets/img/brand/brand-inner-8.png";
 import brand_img_9 from "../../../public/assets/img/brand/brand-inner-9.png";
 import { useTranslation } from "@/utils/i18n";
+import Image from "next/image";
+import { domain } from "@/apis/apiClient";
 
 const brand_content = {
   titel: "Trusted by Thousands Business",
@@ -33,6 +34,18 @@ const { titel, description, brand_img } = brand_content;
 
 const Brand = () => {
   const { t } = useTranslation();
+  const [partners, setPartners] = useState([]);
+
+  const fetchPartner = async () => {
+    const response = await fetch(`${domain}/partners`);
+    const data = await response.json();
+    // console.log(data);
+    setPartners(data.data);
+  };
+
+  useEffect(() => {
+    fetchPartner();
+  }, []);
 
   return (
     <>
@@ -50,15 +63,32 @@ const Brand = () => {
             <div className="row justify-content-center">
               <div className="col-xl-10">
                 <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 justify-content-center">
-                  {brand_img.map((item, i) => (
+                  {partners.map((item, i) => (
                     <div
                       key={i}
                       className="col wow tpfadeUp"
+                      style={{
+                        width: "174px",
+                        height: "84px",
+                      }}
                       data-wow-duration=".9s"
-                      data-wow-delay={item.delay}
+                      data-wow-delay={".2s"}
                     >
-                      <div className="ab-brand-item mb-25">
-                        <Image src={item.img} alt="theme-pure" />
+                      <div
+                        className="ab-brand-item mb-25"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <img
+                          src={item.logo}
+                          alt={item.name}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                            boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+                          }}
+                        />
                       </div>
                     </div>
                   ))}

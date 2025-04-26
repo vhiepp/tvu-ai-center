@@ -12,6 +12,9 @@ namespace AICenterAPI.Configurations
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAboutService, AboutService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IUploadService, UploadService>();
+            services.AddScoped<IPartnerService, PartnerService>();
         }
     }
 }
