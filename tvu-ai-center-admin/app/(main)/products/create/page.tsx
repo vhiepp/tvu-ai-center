@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import Editor from '@/components/Editor';
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
+import { Calendar } from 'primereact/calendar';
 import ImagePicker from '@/components/forms/ImagePicker';
 
 interface DropdownItem {
@@ -28,6 +29,7 @@ const RoleAdminCreate = () => {
     const [descriptionEn, setDescriptionEn] = useState('');
     const [multiselectValue, setMultiselectValue] = useState(null);
     const [multiselectValues, setMultiselectValues] = useState<DropdownItem[]>([]);
+    const [calendarValue, setCalendarValue] = useState<any>(null);
 
     // const multiselectValues = [
     //     { name: 'Australia', code: 'AU' },
@@ -172,32 +174,44 @@ const RoleAdminCreate = () => {
                             </label>
                             <InputText ref={categoryEnNameRef} placeholder="Tiêu đề tiếng anh" id="role_name" value={categoryEnName} onChange={(e) => setCategoryEnName(e.target.value)} type="text" />
                         </div>
-                        <div className="field col-12">
-                            <div className="grid">
-                                <div className="field col-12 md:col-6">
-                                    <label htmlFor="password" className="text-lg">
-                                        Danh mục <span className="p-error">(*)</span>
-                                    </label>
-                                    <MultiSelect
-                                        value={multiselectValue}
-                                        onChange={(e) => setMultiselectValue(e.value)}
-                                        options={multiselectValues}
-                                        itemTemplate={itemTemplate}
-                                        optionLabel="name"
-                                        placeholder="Chọn danh mục"
-                                        filter
-                                        className="multiselect-custom"
-                                        display="chip"
-                                    />
-                                </div>
-                                <div className="field col-12 md:col-6">
-                                    <label htmlFor="password" className="text-lg">
-                                        Ảnh nền <span className="p-error">(*)</span>
-                                    </label>
-                                    <ImagePicker setImageSrc={null} />
-                                </div>
-                            </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="password" className="text-lg">
+                                Danh mục <span className="p-error">(*)</span>
+                            </label>
+                            <MultiSelect
+                                value={multiselectValue}
+                                onChange={(e) => setMultiselectValue(e.value)}
+                                options={multiselectValues}
+                                itemTemplate={itemTemplate}
+                                optionLabel="name"
+                                placeholder="Chọn danh mục"
+                                filter
+                                className="multiselect-custom"
+                                display="chip"
+                            />
                         </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="password" className="text-lg">
+                                Ngày hoàn thành <span className="p-error">(*)</span>
+                            </label>
+                            <Calendar showIcon showButtonBar dateFormat="dd/mm/yy" maxDate={new Date()} value={calendarValue} onChange={(e) => setCalendarValue(e.value ?? null)} />
+                        </div>
+                        <div className="field col-12 md:col-6">
+                            <label htmlFor="password" className="text-lg">
+                                Ảnh nền <span className="p-error">(*)</span>
+                            </label>
+                            <ImagePicker setImageSrc={null} />
+                        </div>
+                        <div className="field col-12">
+                            <label htmlFor="role_name" className="text-lg">
+                                Đường dẫn{' '}
+                                <small>
+                                    <i>(nếu có)</i>
+                                </small>
+                            </label>
+                            <InputText ref={categoryViNameRef} placeholder="https://product-demo.com" id="link_demo" value={categoryViName} onChange={(e) => setCategoryViName(e.target.value)} type="url" />
+                        </div>
+
                         <div className="field col-12 md:col-6">
                             <label htmlFor="address" className="text-lg">
                                 Nội dung{' '}

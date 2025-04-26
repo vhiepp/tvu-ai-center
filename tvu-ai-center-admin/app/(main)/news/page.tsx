@@ -347,7 +347,7 @@ const Crud = () => {
                         <Column header="Ảnh nền" body={imageBodyTemplate}></Column>
                         {/* <Column field="price" header="Price" body={priceBodyTemplate} sortable></Column> */}
                         <Column field="category" header="Danh mục" sortable body={categoryBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
-                        <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column>
+                        {/* <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable></Column> */}
                         <Column field="inventoryStatus" header="Trạng thái" body={statusBodyTemplate} sortable headerStyle={{ minWidth: '10rem' }}></Column>
                         <Column body={actionBodyTemplate} headerStyle={{ minWidth: '10rem' }}></Column>
                     </DataTable>
