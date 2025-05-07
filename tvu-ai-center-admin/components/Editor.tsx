@@ -1,18 +1,18 @@
 'use client';
 
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Quote from '@editorjs/quote';
-import Warning from '@editorjs/warning';
 import Marker from '@editorjs/marker';
 import CodeTool from '@editorjs/code';
 import Delimiter from '@editorjs/delimiter';
-import { table } from 'console';
 import Table from '@editorjs/table';
+import ImageTool from '@editorjs/image';
+import '@/public/css/editor.css';
 
-export default function Editor({ onChange, data }) {
+export default function Editor({ onChange, data, readOnly = false }) {
     const ejInstance = useRef(null);
     const [editorId, setEditorId] = useState('');
 
@@ -28,6 +28,7 @@ export default function Editor({ onChange, data }) {
                 holder: editorId,
                 inlineToolbar: true,
                 autofocus: false,
+                readOnly,
                 data: data || {},
                 tools: {
                     header: Header,
@@ -46,6 +47,17 @@ export default function Editor({ onChange, data }) {
                             cols: 3,
                             withHeadings: true,
                             withDropdown: true
+                        }
+                    },
+                    image: {
+                        class: ImageTool,
+                        config: {
+                            /**
+                             * Đường dẫn API xử lý upload ảnh
+                             */
+                            endpoints: {
+                                byFile: 'http://localhost:3020/save-image-editorjs' // Upload ảnh từ file
+                            }
                         }
                     }
                 },
@@ -66,7 +78,7 @@ export default function Editor({ onChange, data }) {
                 ejInstance.current = null;
             }
         };
-    }, [editorId]);
+    }, [editorId, readOnly]);
 
     return (
         <div

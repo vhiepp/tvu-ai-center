@@ -48,6 +48,21 @@ app.post("/upload", upload.single("image"), (req, res) => {
   });
 });
 
+app.post('/save-image-editorjs', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ success: 0, message: 'No file uploaded' });
+  }
+
+  const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+  res.json({
+    success: true,
+    file: {
+      url: imageUrl
+    }
+  });
+});
+
+
 // API: Lấy danh sách ảnh
 app.get("/images", (req, res) => {
   fs.readdir(UPLOADS_FOLDER, (err, files) => {

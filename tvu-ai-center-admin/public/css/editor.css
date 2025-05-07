@@ -1,0 +1,11 @@
+/* .image-tool.image-tool--caption {
+    padding-bottom: 0px;
+} */
+.image-tool {
+    padding-bottom: 46px;
+}
+
+.cdx-input.image-tool__caption {
+    visibility: visible;
+    bottom: 0px;
+}

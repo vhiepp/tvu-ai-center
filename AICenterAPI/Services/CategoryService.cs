@@ -39,6 +39,10 @@ namespace AICenterAPI.Services
 
         public async Task<List<CategoryModel>> GetAllCategory(string? language = "vi")
         {
+            if (string.IsNullOrEmpty(language))
+            {
+                language = "vi";
+            }
             var categories = await _categoryRepository.GetAllAsync();
             var categoryList = new List<CategoryModel>();
             foreach (var category in categories)

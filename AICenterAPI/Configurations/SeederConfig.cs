@@ -11,6 +11,7 @@ namespace AICenterAPI.Configurations
             PermissionSeeder.SeedData(service);
             UserSeeder.SeedData(service);
             PageContentSeeder.SeedData(service);
+            CategorySeeder.SeedData(service);
         }
     }
 }
