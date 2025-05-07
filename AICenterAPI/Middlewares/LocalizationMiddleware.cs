@@ -5,7 +5,7 @@ namespace AICenterAPI.Middlewares
     public class LocalizationMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly string[] _supportedCultures = new[] { "vi", "en" };
+        private readonly string[] _supportedCultures = new[] { "", "vi", "en" };
 
         public LocalizationMiddleware(RequestDelegate next)
         {
@@ -17,14 +17,14 @@ namespace AICenterAPI.Middlewares
             var path = context.Request.Path.Value?.ToLower();
             var segments = path?.Split('/', StringSplitOptions.RemoveEmptyEntries);
 
-            var lang = "vi";
+            var lang = "";
             if (segments != null && segments.Length > 1)
             {
                 lang = segments[1];
             }
             if (!_supportedCultures.Contains(lang))
             {
-                lang = "vi";
+                lang = "";
             }
             var culture = new CultureInfo(lang);
             CultureInfo.CurrentCulture = culture;
