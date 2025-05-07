@@ -15,6 +15,9 @@ namespace AICenterAPI.Configurations
             services.AddScoped<IMemberService, MemberService>();
             services.AddScoped<IUploadService, UploadService>();
             services.AddScoped<IPartnerService, PartnerService>();
+            services.AddScoped<IPageContentService, PageContentService>();
+            services.AddScoped<IPageContentActiveService, PageContentActiveService>();
+            services.AddScoped<ISystemConfigService, SystemConfigService>();
         }
     }
 }

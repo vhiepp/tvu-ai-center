@@ -23,6 +23,9 @@ namespace AICenterAPI.Datas
         public DbSet<NewsContent> NewsContents { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Partner> Partners { get; set; }
+        public DbSet<PageContent> PageContents { get; set; }
+        public DbSet<SystemConfig> SystemConfigs { get; set; }
+        public DbSet<PageContentActive> PageContentActives { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +43,9 @@ namespace AICenterAPI.Datas
 
             modelBuilder.Entity<NewsContent>()
                 .HasKey(nc => new { nc.NewsId, nc.Language });
+
+            modelBuilder.Entity<PageContent>()
+                .HasKey(pc => new { pc.Key, pc.Language });
         }
     }
 }
