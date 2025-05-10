@@ -348,6 +348,24 @@
     }
 }
 
+p.paragraph{
+    a {
+        color: var(--tp-common-blue-3);
+        text-decoration: underline;
+        &:hover{
+            color: var(--tp-common-blue-4);
+        }
+        &::before {
+            content: "🔗";
+        }
+    }
+    mark {
+        padding: 0px 5px 2px 5px;
+        background-color: var(--tp-common-blue-3);
+        color: var(--tp-common-white);
+        border-radius: 5px;
+    }
+}
 
 .postbox__wrapper {
     @media #{$xs,$md} {

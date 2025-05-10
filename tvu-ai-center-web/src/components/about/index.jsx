@@ -1,7 +1,7 @@
 import AboutArea from "@/common/about-area";
 import FooterFive from "@/layout/footers/footer-5";
 import HeaderSix from "@/layout/headers/header-6";
-import React from "react";
+import React, { useEffect } from "react";
 import Breadcrumb from "../../common/breadcrumbs/breadcrumb";
 import HeroBanner from "../../common/hero-banner";
 import CtaArea from "../contact/cta-area";
@@ -13,9 +13,25 @@ import JourneyArea from "./journey-area";
 import { useTranslation } from "@/utils/i18n";
 import ProjectArea from "../homes/home/project-area";
 import ContactFormArea from "../contact/contact-form-area";
+import { domain } from "@/apis/apiClient";
+import { set } from "react-hook-form";
+import ViewContentEditorJS from "../content/view-content-editorjs";
 
 const About = () => {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const [about, setAbout] = React.useState([]);
+
+  const getAboutData = async () => {
+    const res = await fetch(`${domain}/${locale}/page-contents/about`);
+    const json = await res.json();
+    const data = JSON.parse(json.data.content).blocks;
+    console.log({ data });
+    setAbout(data);
+  };
+
+  useEffect(() => {
+    getAboutData();
+  }, []);
 
   return (
     <>
@@ -25,13 +41,16 @@ const About = () => {
         subtitle="AI Center"
         bg_img="/assets/images/tvu/tvu_anime23.png"
       />
-      <Brand />
+      <div className="container">
+        <ViewContentEditorJS data={about} />
+      </div>
       <AboutArea />
       <TeamArea bg_style={true} />
       {/* <CompanyArea /> */}
       {/* <ProjectArea /> */}
       <JourneyArea />
       <div style={{ marginBottom: "4rem" }}></div>
+      <Brand />
       <ContactFormArea />
       {/* <JobArea /> */}
     </>

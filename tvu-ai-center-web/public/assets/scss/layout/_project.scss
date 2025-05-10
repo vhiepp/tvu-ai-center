@@ -415,19 +415,19 @@
             color: #5F6168;
             list-style-type: none;
             position: relative;
-            padding-left: 20px;
-            &::before{
-                content: "";
-                height: 4px;
-                width: 4px;
-                background-color: #5F6168;;
-                border-radius: 50%;
-                display: inline-block;
-                transform: translateY(-3px);
-                position: absolute;
-                top: 20px;
-                left: 0;
-            }
+            padding-left: 10px;
+            // &::before{
+            //     content: "";
+            //     height: 4px;
+            //     width: 4px;
+            //     background-color: #5F6168;;
+            //     border-radius: 50%;
+            //     display: inline-block;
+            //     transform: translateY(-3px);
+            //     position: absolute;
+            //     top: 20px;
+            //     left: 0;
+            // }
         }
     }
 }

@@ -62,7 +62,6 @@ app.post('/save-image-editorjs', upload.single('image'), (req, res) => {
   });
 });
 
-
 // API: Lấy danh sách ảnh
 app.get("/images", (req, res) => {
   fs.readdir(UPLOADS_FOLDER, (err, files) => {
