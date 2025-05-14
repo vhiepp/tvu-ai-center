@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AICenterAPI.Attributes;
+using AICenterAPI.Models;
+using AICenterAPI.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,6 +13,13 @@ namespace AICenterAPI.Controllers
     [ApiController]
     public class NewsController : ControllerBase
     {
+        private readonly INewsService _newsService;
+
+        public NewsController(INewsService newsService)
+        {
+            _newsService = newsService;
+        }
+
         // GET: api/<NewsController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -25,8 +36,33 @@ namespace AICenterAPI.Controllers
 
         // POST api/<NewsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Authorize]
+        [Permission("NewsManager")]
+        public async Task<IActionResult> Post([FromBody] CreateNewsModel model)
         {
+            var claimUserId = User.FindFirst("Id");
+            if (claimUserId == null)
+            {
+                return Ok(
+                    new ApiResponse()
+                    {
+                        Message = "User not found",
+                        Success = false,
+                        Data = null,
+                    }
+                );
+            }
+            var authorId = int.Parse(claimUserId.Value);
+            await _newsService.CreateNews(model, authorId);
+
+            return Ok(
+                new ApiResponse()
+                {
+                    Message = "Create successfully",
+                    Success = true,
+                    Data = null,
+                }
+            );
         }
 
         // PUT api/<NewsController>/5

@@ -11,6 +11,8 @@ namespace AICenterAPI.Datas
 
         public string? Language { get; set; }
 
+        public string? Slug { get; set; }
+
         public int NewsId { get; set; }
     }
 }

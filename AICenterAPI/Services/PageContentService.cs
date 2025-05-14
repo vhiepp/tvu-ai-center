@@ -1,4 +1,5 @@
-﻿using AICenterAPI.Models;
+﻿using System.Text.Json;
+using AICenterAPI.Models;
 using AICenterAPI.Repositories;
 
 namespace AICenterAPI.Services
@@ -17,11 +18,13 @@ namespace AICenterAPI.Services
             var pageContent = await _pageContentRepository.FindByKeyLanguage(key, language);
             if (pageContent == null)
                 return null;
+            JsonDocument doc = JsonDocument.Parse($@"{pageContent.Content}" ?? string.Empty);
+            object content = doc.RootElement;
             return new PageContentModel
             {
                 Key = pageContent.Key,
                 Language = pageContent.Language,
-                Content = pageContent.Content
+                Content = content,
             };
         }
 
@@ -34,7 +37,7 @@ namespace AICenterAPI.Services
             {
                 Key = x.Key,
                 Language = x.Language,
-                Content = x.Content
+                Content = JsonDocument.Parse($@"{x.Content}").RootElement,
             }).ToList();
         }
 

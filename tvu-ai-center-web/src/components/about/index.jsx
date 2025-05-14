@@ -14,7 +14,6 @@ import { useTranslation } from "@/utils/i18n";
 import ProjectArea from "../homes/home/project-area";
 import ContactFormArea from "../contact/contact-form-area";
 import { domain } from "@/apis/apiClient";
-import { set } from "react-hook-form";
 import ViewContentEditorJS from "../content/view-content-editorjs";
 
 const About = () => {
@@ -24,7 +23,7 @@ const About = () => {
   const getAboutData = async () => {
     const res = await fetch(`${domain}/${locale}/page-contents/about`);
     const json = await res.json();
-    const data = JSON.parse(json.data.content).blocks;
+    const data = json.data.content.blocks;
     console.log({ data });
     setAbout(data);
   };

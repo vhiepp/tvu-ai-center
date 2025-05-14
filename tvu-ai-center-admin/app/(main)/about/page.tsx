@@ -63,7 +63,7 @@ const RoleAdminCreate = () => {
         }
     };
 
-    console.log('contentVi', contentVi);
+    // console.log('contentVi', contentVi);
 
     const getData = async () => {
         try {
@@ -74,10 +74,10 @@ const RoleAdminCreate = () => {
             const enItem = data.find((item) => item.language === 'en');
             // console.log('viItem', viItem);
             if (viItem) {
-                setContentVi(JSON.parse(viItem.content));
+                setContentVi(viItem.content);
             }
             if (enItem) {
-                setContentEn(JSON.parse(enItem.content));
+                setContentEn(enItem.content);
             }
 
             setloadDataSuccess(true);

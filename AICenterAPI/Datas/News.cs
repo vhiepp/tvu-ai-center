@@ -18,5 +18,13 @@ namespace AICenterAPI.Datas
         public string? AuthorSubtitle { get; set; }
 
         public int AuthorId { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
+
+        public DateTime PublishedAt { get; set; }
+
+        public bool IsPublished { get; set; } = false;
     }
 }
