@@ -5,13 +5,13 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { apiClient } from '@/apis/api-client';
 import { getCategoriesApi } from '@/apis/admin/category';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Dropdown } from 'primereact/dropdown';
 import { MultiSelect } from 'primereact/multiselect';
 import dynamic from 'next/dynamic';
 import { Toast } from 'primereact/toast';
 import { base64ToFile } from '@/functions';
-import { createNewsApi } from '@/apis/news';
+import { createNewsApi, getNewsDetailApi, updateNewsApi } from '@/apis/news';
 
 const Editor = dynamic(() => import('@/components/Editor'), { ssr: false });
 const ImagePicker = dynamic(() => import('@/components/forms/ImagePicker'), { ssr: false });
@@ -38,15 +38,48 @@ const RoleAdminCreate = () => {
   const [multiselectValue, setMultiselectValue] = useState(null);
   const [multiselectValues, setMultiselectValues] = useState<DropdownItem[]>([]);
   const [selectStatusValue, setSelectStatusValue] = useState(statusValues[0]);
+  const [initialImage, setInitialImage] = useState('');
   const [thumb, setThumb] = useState(null);
-  const [contentVi, setContentVi] = useState({});
-  const [contentEn, setContentEn] = useState({});
+  const [contentVi, setContentVi] = useState(null);
+  const [contentEn, setContentEn] = useState(null);
+  const [slug, setSlug] = useState({ slug: '', viSlug: '', enSlug: '' });
 
   const titleViRef = useRef(null);
   const titleEnRef = useRef(null);
   const toastRef = useRef<Toast>(null);
   const categoryRef = useRef(null);
   const router = useRouter();
+
+  const params = useParams();
+  const id = params.id;
+
+  const getData = async () => {
+    const response = await apiClient.get(getNewsDetailApi(id));
+    const data = response.data.data;
+    // console.log(data);
+
+    const viContent = data.contents.find((item) => item.language == 'vi');
+    const enContent = data.contents.find((item) => item.language == 'en');
+
+    setTitleVi(viContent.title);
+    setTitleEn(enContent.title);
+
+    setContentVi(JSON.parse(viContent.content));
+    setContentEn(JSON.parse(enContent.content));
+
+    const selectCategories = multiselectValues.filter((item) => data.categoryIds.includes(item.code));
+    setMultiselectValue(selectCategories);
+
+    setInitialImage(data.thumb);
+
+    setSlug({
+      slug: null,
+      viSlug: viContent.slug,
+      enSlug: enContent.slug
+    });
+
+    setSelectStatusValue(data.isPublished ? statusValues[0] : statusValues[1]);
+  };
 
   const saveData = async (exit = false) => {
     if (!titleVi) {
@@ -90,18 +123,22 @@ const RoleAdminCreate = () => {
         title: titleVi,
         content: JSON.stringify(contentVi),
         language: 'vi',
-        slug: null
+        slug: slug.viSlug
       },
       {
         title: titleEn,
         content: JSON.stringify(contentEn),
         language: 'en',
-        slug: null
+        slug: slug.enSlug
       }
     ];
     formData.append('NewsContents', JSON.stringify(content));
+    if (slug.slug) {
+      formData.append('Slug', slug.slug);
+    }
+    // console.log('formData', formData.get('Slug'));
 
-    const response = await apiClient.post(createNewsApi, formData, {
+    const response = await apiClient.put(updateNewsApi(id), formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -114,18 +151,9 @@ const RoleAdminCreate = () => {
         router.push('/news');
       } else {
         showSuccess('Lưu thành công');
-        setTitleVi('');
-        setTitleEn('');
-        setMultiselectValue(null);
-        setSelectStatusValue(statusValues[0]);
-        setContentVi({});
-        setContentEn({});
-        setThumb(null);
-        setMultiselectValues([]);
       }
     } else {
       showError('Có lỗi xảy ra');
-      //   alert('Có lỗi xảy ra');
     }
   };
 
@@ -149,6 +177,12 @@ const RoleAdminCreate = () => {
   useEffect(() => {
     getCategories();
   }, []);
+
+  useEffect(() => {
+    if (multiselectValues.length > 0) {
+      getData();
+    }
+  }, [multiselectValues]);
 
   const itemTemplate = (option) => {
     return (
@@ -181,7 +215,7 @@ const RoleAdminCreate = () => {
       <Toast ref={toastRef} />
       <div className="col-12">
         <div className="card">
-          <h5>Thêm tin tức</h5>
+          <h5>Chỉnh sửa tin tức</h5>
           <div className="p-fluid formgrid grid">
             <div className="field col-12 md:col-6">
               <label htmlFor="role_name" className="text-lg">
@@ -218,28 +252,21 @@ const RoleAdminCreate = () => {
                   <label htmlFor="password" className="text-lg">
                     Ảnh nền <span className="p-error">(*)</span>
                   </label>
-                  <ImagePicker setImageSrc={setThumb} />
+                  <ImagePicker setImageSrc={setThumb} initialImage={initialImage} />
                 </div>
               </div>
             </div>
             <div className="field col-12 md:col-6">
               <label htmlFor="address" className="text-lg">
                 Nội dung{' '}
-                {/* <span className="text-sm">
-                                    <i>(không bắt buộc)</i>
-                                </span> */}
               </label>
-              {/* <InputTextarea id="description" value={descriptionVi} onChange={(e) => setDescriptionVi(e.target.value)} rows={2} /> */}
-              <Editor onChange={setContentVi} data={contentVi} />
+              {contentVi && <Editor onChange={setContentVi} data={contentVi} />}
             </div>
             <div className="field col-12 md:col-6">
               <label htmlFor="address" className="text-lg">
                 Content{' '}
-                {/* <span className="text-sm">
-                                    <i>(không bắt buộc)</i>
-                                </span> */}
               </label>
-              <Editor onChange={setContentEn} data={contentEn} />
+              {contentEn && <Editor onChange={setContentEn} data={contentEn} />}
             </div>
             <div className="field col-12 md:col-6">
               <label htmlFor="password" className="text-lg">
@@ -250,11 +277,11 @@ const RoleAdminCreate = () => {
 
             <div className="field col-12">
               <div className="grid mt-4 justify-content-end align-items-center gap-2">
-                {/* <div className="col-12 md:col-6 lg:col-2">
-                  <Button label="Lưu và thêm mới" icon="pi pi-save" className="p-button-info" loading={loading1} onClick={() => saveData()} />
-                </div> */}
                 <div className="col-12 md:col-6 lg:col-2">
-                  <Button label="Lưu và thoát" icon="pi pi-save" className="p-button-success" loading={loading1} onClick={() => saveData(true)} />
+                  <Button label="Lưu và thoát" icon="pi pi-save" className="p-button-info" loading={loading1} onClick={() => saveData(true)} />
+                </div>
+                <div className="col-12 md:col-6 lg:col-2">
+                  <Button label="Lưu" icon="pi pi-save" className="p-button-success" loading={loading1} onClick={() => saveData()} />
                 </div>
               </div>
             </div>

@@ -64,8 +64,52 @@ namespace AICenterAPI.Controllers
 
         // DELETE api/<MemberController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Authorize]
+        [Permission("MemberManager")]
+        public async Task<IActionResult> Delete(int id)
         {
+            try
+            {
+                await _memberService.Delete(id);
+                return Ok(new ApiResponse()
+                {
+                    Success = true,
+                    Message = "Delete member successfully"
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiResponse()
+                {
+                    Success = false,
+                    Message = e.Message
+                });
+            }
+        }
+
+        // DELETE api/<MemberController>/multiple
+        [HttpDelete("multiple")]
+        [Authorize]
+        [Permission("MemberManager")]
+        public async Task<IActionResult> DeleteMultiple([FromBody] List<int> ids)
+        {
+            try
+            {
+                await _memberService.DeleteMultiple(ids);
+                return Ok(new ApiResponse()
+                {
+                    Success = true,
+                    Message = "Delete members successfully"
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ApiResponse()
+                {
+                    Success = false,
+                    Message = e.Message
+                });
+            }
         }
     }
 }

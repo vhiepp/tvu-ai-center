@@ -18,6 +18,7 @@ namespace AICenterAPI.Configurations
             services.AddScoped<IPageContentService, PageContentService>();
             services.AddScoped<IPageContentActiveService, PageContentActiveService>();
             services.AddScoped<ISystemConfigService, SystemConfigService>();
+            services.AddScoped<INewsService, NewsService>();
         }
     }
 }

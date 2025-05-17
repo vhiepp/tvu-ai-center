@@ -26,6 +26,12 @@ namespace AICenterAPI.Datas
         public DbSet<PageContent> PageContents { get; set; }
         public DbSet<SystemConfig> SystemConfigs { get; set; }
         public DbSet<PageContentActive> PageContentActives { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductContent> ProductContents { get; set; }
+        public DbSet<Education> Education { get; set; }
+        public DbSet<EducationCategory> EducationCategories { get; set; }
+        public DbSet<EducationContent> EducationContents { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,6 +52,18 @@ namespace AICenterAPI.Datas
 
             modelBuilder.Entity<PageContent>()
                 .HasKey(pc => new { pc.Key, pc.Language });
+
+            modelBuilder.Entity<ProductCategory>()
+                .HasKey(nc => new { nc.ProductId, nc.CategoryId });
+
+            modelBuilder.Entity<EducationCategory>()
+                .HasKey(nc => new { nc.EducationId, nc.CategoryId });
+
+            modelBuilder.Entity<ProductContent>()
+                .HasKey(nc => new { nc.ProductId, nc.Language });
+
+            modelBuilder.Entity<EducationContent>()
+                .HasKey(nc => new { nc.EducationId, nc.Language });
         }
     }
 }

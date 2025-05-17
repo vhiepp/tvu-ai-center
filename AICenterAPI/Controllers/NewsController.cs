@@ -22,23 +22,48 @@ namespace AICenterAPI.Controllers
 
         // GET: api/<NewsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Authorize]
+        [Permission("NewsManager")]
+        public async Task<IActionResult> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            var news = await _newsService.GetAllNews();
+            return Ok(new ApiResponse()
+            {
+                Data = news,
+                Success = true,
+                Message = "Get all news successfully"
+            });
         }
 
         // GET api/<NewsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("detail/{id}")]
+        [Authorize]
+        [Permission("NewsManager")]
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var news = await _newsService.FindDetailUpdateModel(id);
+            if (news == null)
+            {
+                return NotFound(new ApiResponse()
+                {
+                    Data = null,
+                    Success = false,
+                    Message = "News not found"
+                });
+            }
+            return Ok(new ApiResponse()
+            {
+                Data = news,
+                Success = true,
+                Message = "Get news successfully"
+            });
         }
 
         // POST api/<NewsController>
         [HttpPost]
         [Authorize]
         [Permission("NewsManager")]
-        public async Task<IActionResult> Post([FromBody] CreateNewsModel model)
+        public async Task<IActionResult> Post([FromForm] CreateNewsModel model)
         {
             var claimUserId = User.FindFirst("Id");
             if (claimUserId == null)
@@ -67,14 +92,47 @@ namespace AICenterAPI.Controllers
 
         // PUT api/<NewsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [Authorize]
+        [Permission("NewsManager")]
+        public async Task<IActionResult> Put(int id, [FromForm] CreateNewsModel model)
         {
+            await _newsService.UpdateNews(id, model);
+            return Ok(
+                new ApiResponse()
+                {
+                    Message = "Update successfully",
+                    Success = true,
+                    Data = null,
+                }
+            );
         }
 
         // DELETE api/<NewsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Authorize]
+        [Permission("NewsManager")]
+        public async Task<IActionResult> Delete(int id)
         {
+            await _newsService.Delete(id);
+            return Ok(new ApiResponse()
+            {
+                Success = true,
+                Message = "Delete successfully"
+            });
+        }
+
+        // DELETE api/<NewsController>/multiple
+        [HttpDelete("multiple")]
+        [Authorize]
+        [Permission("NewsManager")]
+        public async Task<IActionResult> DeleteMultiple([FromBody] List<int> ids)
+        {
+            await _newsService.DeleteMultiple(ids);
+            return Ok(new ApiResponse()
+            {
+                Success = true,
+                Message = "Delete successfully"
+            });
         }
     }
 }

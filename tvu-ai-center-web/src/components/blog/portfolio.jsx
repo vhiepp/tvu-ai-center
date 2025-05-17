@@ -37,9 +37,8 @@ const Portfolio = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="tp-about__section-box text-center mb-40">
-                {/* <h4 className="inner-section-subtitle">OVER 150K+ CLIENT</h4> */}
-                <h3 className="tp-section-title">{t("header.news")}</h3>
-                <p>{t("latest_ai_news")}</p>
+                {/* <h3 className="tp-section-title">{t("header.news")}</h3>
+                <p>{t("latest_ai_news")}</p> */}
               </div>
             </div>
           </div>

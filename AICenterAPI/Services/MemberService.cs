@@ -43,6 +43,29 @@ namespace AICenterAPI.Services
             await _memberRepository.AddAsync(member);
         }
 
+        public async Task Delete(int id)
+        {
+            var member = await _memberRepository.FindByIdAsync(id);
+            if (member == null)
+            {
+                throw new Exception("Member not found");
+            }
+            await _memberRepository.DeleteByIdAsync(id);
+        }
+
+        public async Task DeleteMultiple(List<int> ids)
+        {
+            foreach (var id in ids)
+            {
+                var member = await _memberRepository.FindByIdAsync(id);
+                if (member == null)
+                {
+                    throw new Exception("Member not found");
+                }
+                await _memberRepository.DeleteByIdAsync(id);
+            }
+        }
+
         public async Task<List<MemberModel>> GetAllMembers()
         {
             var members = await _memberRepository.GetAllAsync();

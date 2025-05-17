@@ -18,47 +18,19 @@ const team_content = {
 };
 const { sub_title, title, des } = team_content;
 
-const social_links = [
-  {
-    link: "http://facebook.com",
-    target: "_blank",
-    icon: "fab fa-facebook-f",
-    color: "1",
-  },
-  {
-    link: "https://www.instagram.com",
-    target: "_blank",
-    icon: "fab fa-instagram",
-    color: "2",
-  },
-
-  {
-    link: "http://twitter.com",
-    target: "_blank",
-    icon: "fab fa-twitter",
-    color: "3",
-  },
-  {
-    link: "https://www.linkedin.com",
-    target: "_blank",
-    icon: "fab fa-linkedin-in",
-    color: "4",
-  },
-];
-
 const TeamArea = ({ bg_style }) => {
   const { t } = useTranslation();
-  const [partners, setPartners] = useState([]);
+  const [data, setData] = useState([]);
 
-  const fetchPartner = async () => {
-    const response = await fetch(`${domain}/members`);
-    const data = await response.json();
-    // console.log(data);
-    setPartners(data.data);
+  const fetchData = async () => {
+    const fData = await fetch(`${domain}/members`);
+    const res = await fData.json();
+
+    setData(res.data.map((item) => (item.pin ? item : null)).filter(Boolean));
   };
 
   useEffect(() => {
-    fetchPartner();
+    fetchData();
   }, []);
 
   return (
@@ -127,7 +99,7 @@ const TeamArea = ({ bg_style }) => {
             </div>
           </div>
           <div className="row">
-            {partners.slice(0, 4).map((item, i) => (
+            {data.slice(0, 4).map((item, i) => (
               <div
                 key={i}
                 className={`col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-50 
