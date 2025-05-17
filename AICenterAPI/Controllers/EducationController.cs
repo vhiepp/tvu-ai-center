@@ -8,62 +8,62 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AICenterAPI.Controllers
 {
-    [Route("api/products")]
-    [Route("api/{lang:alpha?}/products")]
+    [Route("api/education")]
+    [Route("api/{lang:alpha?}/education")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class EducationController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IEducationService _educationService;
 
-        public ProductController(IProductService productService)
+        public EducationController(IEducationService educationService)
         {
-            _productService = productService;
+            _educationService = educationService;
         }
 
-        // GET: api/<ProductController>
+        // GET: api/<EducationController>
         [HttpGet]
         [Authorize]
-        [Permission("ProductManager")]
+        [Permission("EducationManager")]
         public async Task<IActionResult> GetAll()
         {
-            var product = await _productService.GetAllProduct();
+            var education = await _educationService.GetAllEducation();
             return Ok(new ApiResponse()
             {
-                Data = product,
+                Data = education,
                 Success = true,
-                Message = "Get all product successfully"
+                Message = "Get all education successfully"
             });
         }
 
-        // GET api/<ProductController>/5
+        // GET api/<EducationController>/5
         [HttpGet("detail/{id}")]
         [Authorize]
-        [Permission("ProductManager")]
+        [Permission("EducationManager")]
         public async Task<IActionResult> Get(int id)
         {
-            var product = await _productService.FindDetailUpdateModel(id);
-            if (product == null)
+            var education = await _educationService.FindDetailUpdateModel(id);
+            if (education == null)
             {
                 return NotFound(new ApiResponse()
                 {
                     Data = null,
                     Success = false,
-                    Message = "Product not found"
+                    Message = "Education not found"
                 });
             }
             return Ok(new ApiResponse()
             {
-                Data = product,
+                Data = education,
                 Success = true,
-                Message = "Get product successfully"
+                Message = "Get education successfully"
             });
         }
 
-        // POST api/<ProductController>
+        // POST api/<EducationController>
         [HttpPost]
         [Authorize]
-        [Permission("ProductManager")]
-        public async Task<IActionResult> Post([FromForm] CreateProductModel model)
+        [Permission("EducationManager")]
+        public async Task<IActionResult> Post([FromForm] CreateEducationModel model)
         {
             var claimUserId = User.FindFirst("Id");
             if (claimUserId == null)
@@ -78,7 +78,7 @@ namespace AICenterAPI.Controllers
                 );
             }
             var authorId = int.Parse(claimUserId.Value);
-            await _productService.CreateProduct(model, authorId);
+            await _educationService.CreateEducation(model, authorId);
 
             return Ok(
                 new ApiResponse()
@@ -90,13 +90,13 @@ namespace AICenterAPI.Controllers
             );
         }
 
-        // PUT api/<ProductController>/5
+        // PUT api/<EducationController>/5
         [HttpPut("{id}")]
         [Authorize]
-        [Permission("ProductManager")]
-        public async Task<IActionResult> Put(int id, [FromForm] CreateProductModel model)
+        [Permission("EducationManager")]
+        public async Task<IActionResult> Put(int id, [FromForm] CreateEducationModel model)
         {
-            await _productService.UpdateProduct(id, model);
+            await _educationService.UpdateEducation(id, model);
             return Ok(
                 new ApiResponse()
                 {
@@ -107,13 +107,13 @@ namespace AICenterAPI.Controllers
             );
         }
 
-        // DELETE api/<ProductController>/5
+        // DELETE api/<EducationController>/5
         [HttpDelete("{id}")]
         [Authorize]
-        [Permission("ProductManager")]
+        [Permission("EducationManager")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _productService.Delete(id);
+            await _educationService.Delete(id);
             return Ok(new ApiResponse()
             {
                 Success = true,
@@ -121,13 +121,13 @@ namespace AICenterAPI.Controllers
             });
         }
 
-        // DELETE api/<ProductController>/multiple
+        // DELETE api/<EducationController>/multiple
         [HttpDelete("multiple")]
         [Authorize]
-        [Permission("ProductManager")]
+        [Permission("EducationManager")]
         public async Task<IActionResult> DeleteMultiple([FromBody] List<int> ids)
         {
-            await _productService.DeleteMultiple(ids);
+            await _educationService.DeleteMultiple(ids);
             return Ok(new ApiResponse()
             {
                 Success = true,
